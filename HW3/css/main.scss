@@ -130,10 +130,41 @@
         background: #f4f4f4
         ;
         text-align: center;
+        width: 1600px;
         blockquote{
             font-size: 1.8em;
         }
         span{
             font-weight:700;
+        }
+    }
+
+    .prices-section{
+        text-align: center;
+        padding: 0;
+        width: 1600px;
+        .container {
+            position: relative;
+            .price-title{
+                position: absolute;
+                float: left;
+                top:5%;
+                left: 45%;
+                margin-right: -50%;
+                h4{
+                    font-size: 1.6em;
+                    margin-bottom: 0;
+                }
+                p{
+                    color:rgb(72, 82, 92);
+                }
+            }
+            .price-wrapper{
+                position: absolute;
+            }
+            img{
+                filter: grayscale(100%); 
+                opacity: 0.3; 
+            }
         }
     }
