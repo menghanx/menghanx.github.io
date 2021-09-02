@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,18 @@
     <title>MyBiz Home</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <div class="navbar">
         <div class="container">
-            <a href="index.html">MENU</a>
-
-            <nav class="fake-nav">
-                <ul>
-                    <li class="current"><a href="#">Home</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
-                </ul> 
-             </nav>
+            <a class='logo' href="index.html">MENU</a>
 
             <nav class="main-nav">
-               <ul>
-                   <li><a href="#">About</a></li>
-                   <li><a href="#">Projects</a></li>
-                   <li><a href="#">Services</a></li>
-               </ul> 
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
             </nav>
 
         </div>
@@ -35,12 +29,18 @@
         <div class="container">
             <div class="email-sign-up">
                 <p class="subhead">DON'T WAIT</p>
-                <h1>IMPROVE YOUR BUSINESS TODAY!</h1>
-                <cite class="promotion">- Get your hands on MyBiz -</cite>
+                <div class="promo-text">
+                    <p>IMPROVE</p>
+                    <p>YOUR BUSINESS</p>
+                    <p>TODAY!</p>
+                </div>
+                <div class="promotion">
+                    - Get your hands on MyBiz -
+                </div>
                 <form action="">
                     <label for="email"></label>
-                    <input type="email" name="email" id="email">
-                    
+                    <input type="text" class="email-box" name="email" id="email">
+
                     <input type="submit" class="sign-up-for-free-cta" value="SIGN UP FOR FREE!">
                 </form>
             </div>
@@ -54,17 +54,29 @@
             <ul>
                 <li>
                     <H4>AMAZING FEATURE #1</H4>
-                    <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.
                 </li>
                 <li>
                     <H4>AMAZING FEATURE #2</H4>
-                    <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.
                 </li>
                 <li>
                     <H4>AMAZING FEATURE #3</H4>
-                    <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.
                 </li>
-                
+
             </ul>
         </div>
     </section>
@@ -78,7 +90,9 @@
 
     <section class="prices-section">
         <div class="container">
-            <blockquote><H4>PRICES</H4></blockquote>
+            <blockquote>
+                <H4>PRICES</H4>
+            </blockquote>
             <blockquote>AFFORDABLE FOR EVERYONE</blockquote>
             <ul>
                 <li>
@@ -114,32 +128,37 @@
                     <h2>$49.99 Monthly</h2>
                     <input type="submit" class="buy-now-cta" value="BUT NOW">
                 </li>
-                
+
             </ul>
-            <img class="prices-background" src="images/glasses.png" alt="prices-background">
+            <img class="prices-background" src="images/glasses.png" alt="prices-background" style="width:1600px;">
         </div>
     </section>
 
     <section class="try-free-section">
         <div class="container">
-            <blockquote><H4 class="try-free-head">TRY THE BEST APP IN THE MARKET</H4></blockquote>
+            <blockquote>
+                <H4 class="try-free-head">TRY THE BEST APP IN THE MARKET</H4>
+            </blockquote>
             <blockquote>tell more why your software is amzing and why users need to sign up</blockquote>
             <input type="submit" class="try-now-cta" value="TRY IT FOR FREE">
-            <img class="try-free-background" src="images/notebook.jpg" alt="try-free-background">
+            <img class="try-free-background" src="images/notebook.jpg" alt="try-free-background" style="width:1600px;">
         </div>
     </section>
 
     <section class="contact-section"></section>
     <div class="container">
-        <blockquote><h5 class="contact-head">MYBIZ</H5></blockquote>
+        <blockquote>
+            <h5 class="contact-head">MYBIZ</H5>
+        </blockquote>
         <blockquote>224 Grant Ave, Redondo Beach, CA, 90278 310.555.1212 Ext. 3 for Business Needs</blockquote>
         <ul>
             <li><a href="https://www.facebook.com"><img src="images/facebook.png" alt="facebook"></a></li>
             <li><a href="https://www.twitter.com"><img src="images/twitter.png" alt="twitter"></a></li>
             <li><a href="https://www.instagram.com"><img src="images/instagram.png" alt="instagram"></a></li>
             <li><a href="https://www.youtube.com"><img src="images/youtube.png" alt="youtube"></a></li>
-            <li><a href="https://www.plus.google.com"><img src="images/googleplus.png" alt="google-plus"></a></li>
+            <li><a href="https://www.google.com"><img src="images/googleplus.png" alt="google-plus"></a></li>
         </ul>
     </div>
 </body>
+
 </html>

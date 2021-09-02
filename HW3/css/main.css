@@ -1,2 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+:root {
+  --primary-color: #e8d01a;
+}
 
-/*# sourceMappingURL=main.css.map *//*# sourceMappingURL=main.css.map */
+body {
+  background: white;
+  margin: 0;
+  font-family: "Poppins";
+}
+
+.navbar {
+  background: white;
+  padding: 2em 8em;
+}
+.navbar .logo {
+  text-decoration: none;
+  font-weight: 400;
+  color: black;
+  font-size: 1.2em;
+}
+.navbar nav li {
+  display: inline;
+  margin: 0.6em;
+}
+.navbar nav li a {
+  color: #9c9c9c;
+  text-decoration: none;
+  font-size: 1em;
+}
+.navbar .container {
+  display: flex;
+  place-content: space-between;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  padding: 5em 0em;
+}
+
+.hero {
+  text-align: left;
+  padding: 0;
+}
+.hero .container {
+  position: relative;
+}
+.hero .container .email-sign-up {
+  background: #0b3c5d;
+  float: left;
+  position: absolute;
+  width: 380px;
+  height: 480px;
+  top: 180px;
+  left: 125px;
+  padding: 2em;
+}
+.hero .container .email-sign-up .subhead {
+  padding-left: 1.2em;
+  padding-top: 1em;
+  margin: 0em;
+  color: white;
+}
+.hero .container .email-sign-up .promo-text {
+  color: white;
+  padding-left: 1.2em;
+}
+.hero .container .email-sign-up .promo-text p {
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  font-size: 3em;
+}
+.hero .container .email-sign-up .promotion {
+  padding: 1.2em;
+  margin-bottom: 1em;
+  font-style: italic;
+  font-weight: 550;
+  color: var(--primary-color);
+}
+.hero .container .email-sign-up form {
+  padding-left: 1.2em;
+}
+.hero .container .email-sign-up form .email-box {
+  margin-bottom: 2em;
+  height: 4em;
+  width: 25em;
+}
+.hero .container .email-sign-up .sign-up-for-free-cta {
+  background: var(--primary-color);
+  text-decoration: none;
+  padding: 0;
+  font-size: 0.8em;
+  display: block;
+  margin-top: 1em;
+  height: 3.5em;
+  width: 14em;
+}/*# sourceMappingURL=main.css.map */
