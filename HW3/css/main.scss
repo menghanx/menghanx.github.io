@@ -12,6 +12,7 @@
 
     .navbar {
         background: white;
+        width: 1300px;
         padding: 2em 8em;
         .logo{
             text-decoration: none;
@@ -110,5 +111,29 @@
             img {
             }
         }
-        
+    
+    }
+
+    .features-section{
+        height: 400px;
+        width: 1600px;
+        .feature-item{
+            text-align: center;
+            float: left;
+            width: 29%;
+            margin: 1%;
+            padding: 1%;
+        }
+    }
+    
+    .quote-section{
+        background: #f4f4f4
+        ;
+        text-align: center;
+        blockquote{
+            font-size: 1.8em;
+        }
+        span{
+            font-weight:700;
+        }
     }
