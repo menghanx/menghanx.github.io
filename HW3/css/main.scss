@@ -143,6 +143,11 @@
         text-align: center;
         padding: 0;
         width: 1600px;
+        height: 1000px;
+        background-color: #fff;
+        background-image: url("https://csci571.com/hw/hw3/images/glasses.png");
+        background-blend-mode: luminosity;
+        background-size: cover;
         .container {
             position: relative;
             .price-title{
@@ -151,6 +156,7 @@
                 top:5%;
                 left: 45%;
                 margin-right: -50%;
+                padding-top: 8em;
                 h4{
                     font-size: 1.6em;
                     margin-bottom: 0;
@@ -163,9 +169,11 @@
                 top: 20%;
                 position: absolute;
                 left: 7%;
+                padding-top: 15em;
                 li{
                     margin: 1.5em;
-                    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/grid.png");
+                    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("https://csci571.com/hw/hw3/images/grid.png");
+                    //background-image: url("https://csci571.com/hw/hw3/images/grid.png");
                     height: 600px;
                     width: 400px;
                     display: inline;
@@ -176,17 +184,10 @@
                     .monthly {
                         font-size: 1.8em;
                     }
-                    &::before {
-                        background: white;
-                    }
+                    
                 }
 
             }
-            
 
-            img{
-                filter: grayscale(100%); 
-                opacity: 0.4; 
-            }
         }
     }

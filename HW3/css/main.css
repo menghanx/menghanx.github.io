@@ -130,6 +130,11 @@ section {
   text-align: center;
   padding: 0;
   width: 1600px;
+  height: 1000px;
+  background-color: #fff;
+  background-image: url("https://csci571.com/hw/hw3/images/glasses.png");
+  background-blend-mode: luminosity;
+  background-size: cover;
 }
 .prices-section .container {
   position: relative;
@@ -140,6 +145,7 @@ section {
   top: 5%;
   left: 45%;
   margin-right: -50%;
+  padding-top: 8em;
 }
 .prices-section .container .price-title h4 {
   font-size: 1.6em;
@@ -152,10 +158,11 @@ section {
   top: 20%;
   position: absolute;
   left: 7%;
+  padding-top: 15em;
 }
 .prices-section .container ul li {
   margin: 1.5em;
-  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/grid.png");
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("https://csci571.com/hw/hw3/images/grid.png");
   height: 600px;
   width: 400px;
   display: inline;
@@ -166,11 +173,4 @@ section {
 }
 .prices-section .container ul li .monthly {
   font-size: 1.8em;
-}
-.prices-section .container ul li::before {
-  background: white;
-}
-.prices-section .container img {
-  filter: grayscale(100%);
-  opacity: 0.4;
 }/*# sourceMappingURL=main.css.map */
