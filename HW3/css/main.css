@@ -228,6 +228,35 @@ section {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 3.5em;
-  width: 12em;
+  height: 4em;
+  width: 16em;
+}
+
+.contact-section {
+  padding: 0;
+  margin: 0;
+  background: #1d2530;
+  text-align: center;
+  width: 1600px;
+  height: 380px;
+}
+.contact-section h3 {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  padding-top: 6em;
+  font-weight: normal;
+}
+.contact-section p {
+  margin-top: 0;
+  padding-top: 0;
+  color: #939497;
+  font-size: 1em;
+}
+.contact-section ul {
+  margin-top: 2.5em;
+}
+.contact-section ul li {
+  display: inline;
+  margin: 1.3em;
 }/*# sourceMappingURL=main.css.map */

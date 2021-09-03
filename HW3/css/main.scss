@@ -148,10 +148,6 @@
         padding: 0;
         width: 1600px;
         height: 1000px;
-        // background-color: #fff;
-        // background-image: url("https://csci571.com/hw/hw3/images/glasses.png");
-        // background-blend-mode: luminosity;
-        // background-size: cover;
         background-color: #fff;
         background-blend-mode: luminosity;
         background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/glasses.png");
@@ -181,8 +177,6 @@
                 padding-top: 15em;
                 li{
                     margin: 1.5em;
-                    //background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("https://csci571.com/hw/hw3/images/grid.png");
-                    //background-image: url("https://csci571.com/hw/hw3/images/grid.png");
                     background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("https://csci571.com/hw/hw3/images/grid.png");
                     background-color: white;
                     background-size: cover;
@@ -254,8 +248,39 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            height: 3.5em;
-            width: 12em;
+            height: 4em;
+            width: 16em;
         }
+    }
 
+    .contact-section{
+        padding: 0;
+        margin: 0;
+        background: #1d2530;
+        text-align: center;
+        width: 1600px;
+        height: 380px;
+        
+        h3{
+            color: white;
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            padding-top: 6em;
+            font-weight: normal;
+        }
+        p{
+            margin-top: 0;
+            padding-top: 0;
+            color:#939497;
+            font-size: 1em;
+        }
+        ul{
+            margin-top: 2.5em;
+            li{
+                display: inline;
+                margin: 1.3em;
+            }
+        }
+        
+        
     }
