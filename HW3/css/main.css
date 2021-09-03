@@ -148,10 +148,29 @@ section {
 .prices-section .container .price-title p {
   color: #48525c;
 }
-.prices-section .container .price-wrapper {
+.prices-section .container ul {
+  top: 20%;
   position: absolute;
+  left: 7%;
+}
+.prices-section .container ul li {
+  margin: 1.5em;
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/grid.png");
+  height: 600px;
+  width: 400px;
+  display: inline;
+  float: left;
+}
+.prices-section .container ul li H4 {
+  padding: 2em;
+}
+.prices-section .container ul li .monthly {
+  font-size: 1.8em;
+}
+.prices-section .container ul li::before {
+  background: white;
 }
 .prices-section .container img {
   filter: grayscale(100%);
-  opacity: 0.3;
+  opacity: 0.4;
 }/*# sourceMappingURL=main.css.map */

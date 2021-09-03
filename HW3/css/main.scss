@@ -159,12 +159,34 @@
                     color:rgb(72, 82, 92);
                 }
             }
-            .price-wrapper{
+            ul{
+                top: 20%;
                 position: absolute;
+                left: 7%;
+                li{
+                    margin: 1.5em;
+                    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/grid.png");
+                    height: 600px;
+                    width: 400px;
+                    display: inline;
+                    float: left; 
+                    H4{
+                        padding: 2em;
+                    }
+                    .monthly {
+                        font-size: 1.8em;
+                    }
+                    &::before {
+                        background: white;
+                    }
+                }
+
             }
+            
+
             img{
                 filter: grayscale(100%); 
-                opacity: 0.3; 
+                opacity: 0.4; 
             }
         }
     }
