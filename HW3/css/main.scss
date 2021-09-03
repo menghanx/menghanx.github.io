@@ -156,18 +156,15 @@
         .container {
             position: relative;
             .price-title{
-                position: absolute;
-                float: left;
-                top:5%;
-                left: 45%;
-                margin-right: -50%;
-                padding-top: 4em;
                 h4{
-                    font-size: 1.6em;
+                    font-size: 1.5em;
+                    font-weight: normal;
                     margin-bottom: 0;
+                    margin-top: 0;
+                    padding-top: 2.5em;
                 }
                 p{
-                    color:rgb(72, 82, 92);
+                    color:#a6a6a6;
                 }
             }
             ul{
