@@ -172,8 +172,11 @@
                 padding-top: 15em;
                 li{
                     margin: 1.5em;
-                    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("https://csci571.com/hw/hw3/images/grid.png");
+                    //background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("https://csci571.com/hw/hw3/images/grid.png");
                     //background-image: url("https://csci571.com/hw/hw3/images/grid.png");
+                    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("https://csci571.com/hw/hw3/images/grid.png");
+                    background-color: white;
+                    background-size: cover;
                     height: 600px;
                     width: 400px;
                     display: inline;
@@ -184,7 +187,18 @@
                     .monthly {
                         font-size: 1.8em;
                     }
-                    
+                    .buy-now-cta{
+                        color: white;
+                        background: #0b3c5d; 
+                        text-decoration: none;
+                        padding: 0;
+                        font-size: 1em;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        height: 4em;
+                        width: 10em;
+                    }
                 }
 
             }
