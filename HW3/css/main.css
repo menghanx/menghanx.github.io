@@ -149,7 +149,7 @@ section {
   font-weight: normal;
   margin-bottom: 0;
   margin-top: 0;
-  padding-top: 2.5em;
+  padding-top: 2em;
 }
 .prices-section .container .price-title p {
   color: #a6a6a6;
@@ -157,7 +157,7 @@ section {
 .prices-section .container ul {
   top: 20%;
   position: absolute;
-  left: 7%;
+  left: 8%;
   padding-top: 15em;
 }
 .prices-section .container ul li {
