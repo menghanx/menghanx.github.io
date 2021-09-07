@@ -47,12 +47,6 @@ section {
 .hero {
   text-align: left;
   padding: 0;
-  height: 900px;
-  width: 1600px;
-  background: linear-gradient(rgba(13, 13, 14, 0.25), rgba(12, 12, 12, 0.25)), url(../images/lawyer.jpg);
-  background-size: cover;
-  background-size: 100%;
-  background-position: center;
 }
 .hero .container {
   position: relative;
@@ -108,7 +102,6 @@ section {
   height: 3.5em;
   width: 14em;
 }
-
 .features-section {
   height: 400px;
   width: 1600px;
@@ -138,67 +131,57 @@ section {
 }
 
 .prices-section {
+  text-align: center;
+  padding: 0;
   width: 1600px;
   height: 1000px;
   background-color: #fff;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/glasses.png");
   background-blend-mode: luminosity;
-  background-size: 165%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/glasses.png");
+  background-size: 150%;
   background-position: center;
-  background-repeat: repeat;
-  background-attachment: fixed;
-  padding-top: 1em;
 }
-.prices-section .prices-inner {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  width: 1600px;
-  height: 1000px;
+.prices-section .container {
+  position: relative;
 }
-
-.price-title h4 {
+.prices-section .container .price-title h4 {
   font-size: 1.5em;
   font-weight: normal;
-  text-align: center;
   margin-bottom: 0;
   margin-top: 0;
-  padding-top: 1em;
-}
-.price-title p {
-  margin-top: 0;
-  color: #8b8989;
-  text-align: center;
-}
-
-.price-options {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-  border-spacing: 100px;
   padding-top: 2em;
-  text-align: center;
 }
-.price-options .price-item {
-  display: table-cell;
+.prices-section .container .price-title p {
+  color: #a6a6a6;
+}
+.prices-section .container ul {
+  top: 20%;
+  position: absolute;
+  left: 8%;
+  padding-top: 15em;
+}
+.prices-section .container ul li {
   margin: 1.5em;
   background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("https://csci571.com/hw/hw3/images/grid.png");
   background-color: white;
   background-size: cover;
   height: 600px;
-  width: 350px;
+  width: 400px;
+  display: inline;
+  float: left;
 }
-.price-options .price-item H4 {
+.prices-section .container ul li H4 {
   padding-top: 2em;
   font-size: 1.2em;
   font-weight: normal;
   margin-bottom: 1.6em;
 }
-.price-options .price-item .monthly {
+.prices-section .container ul li .monthly {
   font-weight: normal;
   padding-top: 1em;
   font-size: 1.8em;
 }
-.price-options .price-item .buy-now-cta {
+.prices-section .container ul li .buy-now-cta {
   color: white;
   background: #0b3c5d;
   text-decoration: none;
@@ -271,10 +254,4 @@ section {
 .contact-section ul li {
   display: inline;
   margin: 1.3em;
-}
-.contact-section ul a {
-  text-decoration: none;
-}
-.contact-section ul img {
-  text-decoration: none;
 }
