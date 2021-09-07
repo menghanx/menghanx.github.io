@@ -49,7 +49,7 @@ section {
   padding: 0;
   height: 900px;
   width: 1600px;
-  background: linear-gradient(rgba(13, 13, 14, 0.25), rgba(12, 12, 12, 0.25)), url(../images/lawyer.jpg);
+  background: linear-gradient(rgba(13, 13, 14, 0.25), rgba(12, 12, 12, 0.25)), url("http://csci571.com/hw/hw3/images/lawyer.jpg");
   background-size: cover;
   background-size: 100%;
   background-position: center;
@@ -141,7 +141,7 @@ section {
   width: 1600px;
   height: 1000px;
   background-color: #fff;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../images/glasses.png");
+  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("http://csci571.com/hw/hw3/images/glasses.png");
   background-blend-mode: luminosity;
   background-size: 165%;
   background-position: center;
@@ -214,7 +214,7 @@ section {
 .try-free-section {
   width: 1600px;
   height: 450px;
-  background: linear-gradient(rgba(11, 60, 93, 0.85), rgba(11, 60, 93, 0.85)), url(../images/notebook.jpg);
+  background: linear-gradient(rgba(11, 60, 93, 0.85), rgba(11, 60, 93, 0.85)), url("http://csci571.com/hw/hw3/images/notebook.jpg");
   background-size: cover;
   background-size: 100%;
   background-position: center;
