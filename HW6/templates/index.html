@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
     <title>Weather</title>
     <script>
-        function submit_entry() {
+
+        function request_weather_data() {
 
             var street = document.getElementById("street");
             var city = document.getElementById("city");
@@ -39,6 +40,7 @@
                         })
                 })
         }
+
     </script>
 </head>
 
@@ -52,7 +54,7 @@
             <div class="form-intro">Fill out the from to get weather info !</div>
         </div>
 
-        <form>
+        <form onsubmit="event.preventDefault(); request_weather_data();">
             <div class="location-details">
                 <div class="street-input">
                     <label for="street" class="input-details">Street<span class="required">*</span></label>
@@ -130,7 +132,7 @@
             </div>
 
             <div class="button">
-                <button class="btn-submit" onclick="submit_entry()">SUBMIT</button>
+                <input class="btn-submit" type="submit" value="SUBMIT">
                 <input class="btn-clear" type="reset" value="CLEAR">
             </div>
         </form>
