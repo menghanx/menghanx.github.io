@@ -10,7 +10,6 @@
     <title>Weather</title>
     <script>
         function submit_entry() {
-            event.preventDefault();
 
             var street = document.getElementById("street");
             var city = document.getElementById("city");
@@ -21,7 +20,6 @@
                 city: city.value,
                 state: state.value
             };
-            alert("The form was submitted");
             var url = new URL(`${window.origin}/weather-api/json`)
 
             url.search = new URLSearchParams(entry).toString()
