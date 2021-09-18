@@ -10,9 +10,11 @@
     <title>Weather</title>
     <script>
 
+        // store location data in json object entry, and build param with it for backend API call
         function request_weather_data() {
             var checkBox = document.getElementById("auto-location-check");
 
+            // if user choose to detect location from IP address
             if (checkBox.checked == true) {
                 fetch('https://ipinfo.io/json?token=15ee8a4671b9a0').
                     then(function (response) {
@@ -22,7 +24,6 @@
                         }
                         response.json().
                             then(function (data) {
-                                console.log(data);
                                 var entry = {
                                     loc: data.loc
                                 };
@@ -31,6 +32,7 @@
                     });
 
             } else {
+                // if user entered detalied address
                 var street = document.getElementById("street");
                 var city = document.getElementById("city");
                 var state = document.getElementById("state")
