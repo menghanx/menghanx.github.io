@@ -14,7 +14,22 @@
             var checkBox = document.getElementById("auto-location-check");
 
             if (checkBox.checked == true) {
-                alert("Hello! I am an alert box!!");
+                fetch('https://ipinfo.io/json?token=15ee8a4671b9a0').
+                    then(function (response) {
+                        if (response.status !== 200) {
+                            console.log(`Response status: ${response.status}`);
+                            return;
+                        }
+                        response.json().
+                            then(function (data) {
+                                console.log(data);
+                                var entry = {
+                                    loc: data.loc
+                                };
+                                get_weather_data(entry);
+                            })
+                    });
+
             } else {
                 var street = document.getElementById("street");
                 var city = document.getElementById("city");
@@ -24,30 +39,35 @@
                     city: city.value,
                     state: state.value
                 };
-
-                var url = new URL(`${window.origin}/weather-api/json`);
-
-                url.search = new URLSearchParams(entry).toString();
-
-                fetch(url).
-                    then(function (response) {
-                        if (response.status !== 200) {
-                            console.log(`Response status: ${response.status}`);
-                            return;
-                        }
-
-                        response.json().
-                            then(function (data) {
-
-                                console.log(data)
-
-                            })
-                    })
+                get_weather_data(entry);
             }
 
         }
 
-        function auto_detect_location() {
+        // This function builds request url and send it to an API hosted by backend
+        function get_weather_data(entry) {
+            var url = new URL(`${window.origin}/weather-api/json`);
+            url.search = new URLSearchParams(entry).toString();
+            fetch(url).
+                then(function (response) {
+                    if (response.status !== 200) {
+                        console.log(`Response status: ${response.status}`);
+                        return;
+                    }
+
+                    response.json().
+                        then(function (data) {
+                            populate_result(data);
+                        })
+                });
+        }
+
+        function populate_result(data) {
+            // do something with the weather data here
+            console.log(data);
+        }
+
+        function checkbox_switch() {
             var checkBox = document.getElementById("auto-location-check");
             var resultSection = document.getElementById("result-section");
 
@@ -81,16 +101,16 @@
             <div class="location-details">
                 <div class="street-input">
                     <label for="street" class="input-details">Street<span class="required">*</span></label>
-                    <input class="user-input" type="text" id="street" name="street" required>
+                    <input class="user-input" type="text" id="street" name="street" required autocomplete="off">
                 </div>
                 <div class="city-state-container">
                     <div class="input-box">
                         <label for="city" class="input-details">City<span class="required">*</span></label>
-                        <input class="user-input" type="text" id="city" name="city" required>
+                        <input class="user-input" type="text" id="city" name="city" required autocomplete="off">
                     </div>
                     <div class="input-box">
                         <label class="input-details">State<span class="required">*</span></label>
-                        <select class="user-input" name="states" id="state" required>
+                        <select class="user-input" name="states" id="state" required autocomplete="off">
                             <option disabled selected value>Select your state</option>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
@@ -153,7 +173,7 @@
                     location? Check
                     here</label>
                 <input type="checkbox" id="auto-location-check" name="auto-location" value="auto"
-                    onclick="auto_detect_location()">
+                    onclick="checkbox_switch()" autocomplete="off">
             </div>
 
             <div class="button">
