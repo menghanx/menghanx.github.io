@@ -67,6 +67,22 @@
             console.log(data);
         }
 
+        // This button to clear input form and result
+        function clear_page() {
+
+            // clean input form and checked box
+            document.getElementById("input-form").reset();
+
+            var inputbox = document.getElementById("street")
+            if (inputbox.disabled == true) {
+                document.getElementById("street").disabled = false;
+                document.getElementById("city").disabled = false;
+                document.getElementById("state").disabled = false;
+            }
+
+            // clean result here and hide it
+        }
+
         function checkbox_switch() {
             var checkBox = document.getElementById("auto-location-check");
             var resultSection = document.getElementById("result-section");
@@ -78,12 +94,11 @@
                 document.getElementById("city").disabled = true;
                 document.getElementById("state").disabled = true;
             } else {
-                document.getElementById("input-form").reset();
-                document.getElementById("street").disabled = false;
-                document.getElementById("city").disabled = false;
-                document.getElementById("state").disabled = false;
+                // uncheck the checkbox should reset everything on the page
+                clear_page()
             }
         }
+
     </script>
 </head>
 
@@ -178,7 +193,7 @@
 
             <div class="button">
                 <input class="btn-submit" type="submit" value="SUBMIT">
-                <input class="btn-clear" type="reset" value="CLEAR">
+                <button class="btn-clear" onclick="clear_page()">CLEAR</button>
             </div>
         </form>
 
