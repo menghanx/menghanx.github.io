@@ -23,23 +23,25 @@ body{
     max-width: 600px;
     width: 100%;
     max-height: 450px;
-    height: 100%;
-    background: #fff;
-    
+    height: 100%;   
 }
 
 .title-container{
-    height: 120px;
+    height: 140px;
     background-image: url("./Images/banner.jpg");
     background-position-y: -80px;
 }
 
 .title-container {
     padding: 30px 40px 20px 40px;
+    border: 1px solid #d8d8d8;
 }    
 
 form {
-    padding: 20px 40px 20px 40px;
+    padding: 20px 40px 40px 40px;
+    background: #fff;
+    box-shadow: 0 2px #cfcfcf;
+    border: 1px solid #d8d8d8;
 }
 
 .form-title {
@@ -92,5 +94,35 @@ select {
 }
 
 hr{
-    color: #738aa8;
+    color: #86b4f0;
+}
+
+.detect-location{
+    margin: 20px 0 30px 0;
+}
+
+.detect-location .input-details {
+    font-size: 1em;
+}
+
+.btn-submit{
+    font-size: 1em;
+    background-color: #4e70b0;
+    color: white;
+    width: 100px;
+    height: 45px;
+    box-shadow: 0 4px #364463;
+}
+
+.btn-clear{
+    font-size: 1em;
+    background-color: #fcb400;
+    color: white;
+    width: 100px;
+    height: 45px;
+    box-shadow: 0 4px #fb8603;
+}
+
+.result-section {
+    display: none;
 }

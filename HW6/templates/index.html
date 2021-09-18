@@ -15,15 +15,15 @@
             var street = document.getElementById("street");
             var city = document.getElementById("city");
             var state = document.getElementById("state")
-
             var entry = {
                 street: street.value,
                 city: city.value,
                 state: state.value
             };
-            var url = new URL(`${window.origin}/weather-api/json`)
 
-            url.search = new URLSearchParams(entry).toString()
+            var url = new URL(`${window.origin}/weather-api/json`);
+
+            url.search = new URLSearchParams(entry).toString();
 
             fetch(url).
                 then(function (response) {
@@ -41,6 +41,22 @@
                 })
         }
 
+        function auto_detect_location() {
+            var checkBox = document.getElementById("auto-location-check");
+            var resultSection = document.getElementById("result-section");
+
+            if (checkBox.checked == true) {
+                document.getElementById("input-form").reset();
+                document.getElementById("auto-location-check").checked = true;
+                document.getElementById("street").disabled = true;
+                document.getElementById("city").disabled = true;
+                document.getElementById("state").disabled = true;
+            } else {
+                document.getElementById("street").disabled = false;
+                document.getElementById("city").disabled = false;
+                document.getElementById("state").disabled = false;
+            }
+        }
     </script>
 </head>
 
@@ -54,7 +70,7 @@
             <div class="form-intro">Fill out the from to get weather info !</div>
         </div>
 
-        <form onsubmit="event.preventDefault(); request_weather_data();">
+        <form id="input-form" onsubmit="event.preventDefault(); request_weather_data();">
             <div class="location-details">
                 <div class="street-input">
                     <label for="street" class="input-details">Street<span class="required">*</span></label>
@@ -126,9 +142,11 @@
             </div>
             <hr>
             <div class="detect-location">
-                <label class="input-details" for="auto-location">Want us to auto-detect your location? Check
+                <label class="input-details" id="auto-detect-text" for="auto-location-check">Want us to auto-detect your
+                    location? Check
                     here</label>
-                <input type="checkbox" id="auto-location" name="auto-location" value="auto">
+                <input type="checkbox" id="auto-location-check" name="auto-location" value="auto"
+                    onclick="auto_detect_location()">
             </div>
 
             <div class="button">
@@ -136,9 +154,11 @@
                 <input class="btn-clear" type="reset" value="CLEAR">
             </div>
         </form>
+
+        <div class="result-section" id="result-section">
+            Here goes the result
+        </div>
     </div>
-
-
 
 
 </body>

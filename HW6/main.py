@@ -20,42 +20,46 @@ def home():
 
 @app.route("/weather-api/json", methods=['GET'])
 def get_weather():
-    # check geo api params
-    if 'street' not in request.args:
-        return "Error: No street param"
-    if 'city' not in request.args:
-        return "Error: No city param"
-    if 'state' not in request.args:
-        return "Error: No state param"
+    # if param contains loc:"lat,lng"
+    if 'loc' in request.args:
+        geo_location = request.args.get('loc')
+    # else use geo api to look up
+    else:
+        if 'street' not in request.args:
+            return "Error: No street param"
+        if 'city' not in request.args:
+            return "Error: No city param"
+        if 'state' not in request.args:
+            return "Error: No state param"
 
-    # build url to get geo data
-    street = request.args.get('street')
-    city = request.args.get('city')
-    state = request.args.get('state')
-    address = street.strip() + ", " + city.strip() + ", " + state.strip()
-    GEO_API_KEY = "AIzaSyCLJBmNPC4h2bQlqiUl17X0m0hzYMgKzAs"
-    params = {
-        "key": GEO_API_KEY,
-        "address": address
-    }
-    querystring = parse.urlencode(params)
+        # build url to get geo data
+        street = request.args.get('street')
+        city = request.args.get('city')
+        state = request.args.get('state')
+        address = street.strip() + ", " + city.strip() + ", " + state.strip()
+        GEO_API_KEY = "AIzaSyCLJBmNPC4h2bQlqiUl17X0m0hzYMgKzAs"
+        params = {
+            "key": GEO_API_KEY,
+            "address": address
+        }
+        querystring = parse.urlencode(params)
 
-    # GET geo_url
-    geo_url = "https://maps.googleapis.com/maps/api/geocode/json?"+querystring
-    try:
-        geo_response = urlopen(geo_url)
-    except urllib.error.URLError as e:
-        print("HTTP Response: " + str(e.code))
-        print("Bad Request!!")
+        # GET geo_url
+        geo_url = "https://maps.googleapis.com/maps/api/geocode/json?"+querystring
+        try:
+            geo_response = urlopen(geo_url)
+        except urllib.error.URLError as e:
+            print("HTTP Response: " + str(e.code))
+            print("Bad Request!!")
 
-    try:
-        geo_data = json.loads(geo_response.read())
-    except:
-        geo_data = None
+        try:
+            geo_data = json.loads(geo_response.read())
+        except:
+            geo_data = None
 
-    lat = geo_data['results'][0]['geometry']['location']['lat']
-    lng = geo_data['results'][0]['geometry']['location']['lng']
-    geo_location = str(lat) + "," + str(lng)
+        lat = geo_data['results'][0]['geometry']['location']['lat']
+        lng = geo_data['results'][0]['geometry']['location']['lng']
+        geo_location = str(lat) + "," + str(lng)
 
     # Build query string
     #location = "-73.98529171943665,40.75872069597532"
@@ -69,7 +73,6 @@ def get_weather():
                       "timezone": "America/Los_Angeles"
                       }
     querystring = parse.urlencode(weather_params)
-    querystring
 
     # build tomorrow.io request url
     url = 'https://api.tomorrow.io/v4/timelines?' + querystring
