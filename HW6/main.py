@@ -6,7 +6,7 @@ from urllib import parse
 from urllib.request import urlopen
 
 import jyserver.Flask as jsf
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, current_app, request
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 def home():
     # button tutorial
     # return App.render(render_template('index.html'))
-    return render_template('index.html')
+    return current_app.send_static_file('index.html')
 
 
 @app.route("/weather-api/json", methods=['GET'])
@@ -88,29 +88,6 @@ def get_weather():
     data_json = json.loads(weather_resp.read())
 
     return jsonify(data_json)
-
-# Example of how to render page with variables
-
-
-@app.route("/hello/<name>")
-def hello_there(name):
-    now = datetime.now()
-    formatted_now = now.strftime("%A, %d %B, %Y at %X")
-
-    # Filter the name argument to letters only using regular expressions. URL arguments
-    # can contain arbitrary text, so we restrict to safe characters only.
-    match_object = re.match("[a-zA-Z]+", name)
-
-    if match_object:
-        clean_name = match_object.group(0)
-    else:
-        clean_name = "Friend"
-
-    return render_template(
-        "hello_there.html",
-        name=clean_name,
-        date=datetime.now()
-    )
 
 
 if __name__ == '__main__':

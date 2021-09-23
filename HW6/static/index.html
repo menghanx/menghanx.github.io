@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/Images/clear_day.svg" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    <link rel="stylesheet" type="text/css" href="/static/site.css" />
     <title>Weather</title>
     <script>
 
@@ -199,10 +199,29 @@
             </div>
         </form>
 
-        <div class="result-section" id="result-section">
-            Here goes the result
+        <div class="no-result-section">
+            <p>No records have been found.</p>
         </div>
+
+        <div class="detail-container" id="detail-container">
+            <div class="detail-title">
+                <h1>Daily Weather Details</h2>
+            </div>
+
+            <div class="detail-section">
+                <div class="top-detail">
+                    <div class="top-left-detail"></div>
+                    <div class="top-right-detail"></div>
+                </div>
+                <div class="bottom-detail"></div>
+            </div>
+        </div>
+
+
+
+
     </div>
+
 
 
 </body>
