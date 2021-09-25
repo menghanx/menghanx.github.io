@@ -76,7 +76,7 @@ def get_weather():
 
     # build tomorrow.io request url
     url = 'https://api.tomorrow.io/v4/timelines?' + querystring
-
+    print(url)
     # Get response
     try:
         weather_resp = urlopen(url)
