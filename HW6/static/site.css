@@ -29,7 +29,7 @@ body{
 
 .title-container{
     height: 140px;
-    background-image: url("./Images/banner.jpg");
+    background-image: url("/static/Images/banner.jpg");
     background-position-y: -80px;
 }
 
