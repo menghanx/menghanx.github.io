@@ -7,101 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/Images/clear_day.svg" />
     <link rel="stylesheet" type="text/css" href="/static/site.css" />
+    <script src="/static/scripts.js"></script>
     <title>Weather</title>
-    <script>
 
-        // store location data in json object entry, and build param with it for backend API call
-        function request_weather_data() {
-            var checkBox = document.getElementById("auto-location-check");
-
-            // if user choose to detect location from IP address
-            if (checkBox.checked == true) {
-                fetch('https://ipinfo.io/json?token=15ee8a4671b9a0').
-                    then(function (response) {
-                        if (response.status !== 200) {
-                            console.log(`Response status: ${response.status}`);
-                            return;
-                        }
-                        response.json().
-                            then(function (data) {
-                                var entry = {
-                                    loc: data.loc
-                                };
-                                get_weather_data(entry);
-                            })
-                    });
-
-            } else {
-                // if user entered detalied address
-                var street = document.getElementById("street");
-                var city = document.getElementById("city");
-                var state = document.getElementById("state")
-                var entry = {
-                    street: street.value,
-                    city: city.value,
-                    state: state.value
-                };
-                get_weather_data(entry);
-            }
-
-        }
-
-        // This function builds request url and send it to an API hosted by backend
-        function get_weather_data(entry) {
-            var url = new URL(`${window.origin}/weather-api/json`);
-            url.search = new URLSearchParams(entry).toString();
-            fetch(url).
-                then(function (response) {
-                    if (response.status !== 200) {
-                        console.log(`Response status: ${response.status}`);
-                        return;
-                    }
-
-                    response.json().
-                        then(function (data) {
-                            populate_result(data);
-                        })
-                });
-        }
-
-        function populate_result(data) {
-            // do something with the weather data here
-            console.log(data);
-        }
-
-        // This button to clear input form and result
-        function clear_page() {
-
-            // clean input form and checked box
-            document.getElementById("input-form").reset();
-
-            var inputbox = document.getElementById("street")
-            if (inputbox.disabled == true) {
-                document.getElementById("street").disabled = false;
-                document.getElementById("city").disabled = false;
-                document.getElementById("state").disabled = false;
-            }
-
-            // clean result here and hide it
-        }
-
-        function checkbox_switch() {
-            var checkBox = document.getElementById("auto-location-check");
-            var resultSection = document.getElementById("result-section");
-
-            if (checkBox.checked == true) {
-                document.getElementById("input-form").reset();
-                document.getElementById("auto-location-check").checked = true;
-                document.getElementById("street").disabled = true;
-                document.getElementById("city").disabled = true;
-                document.getElementById("state").disabled = true;
-            } else {
-                // uncheck the checkbox should reset everything on the page
-                clear_page()
-            }
-        }
-
-    </script>
 </head>
 
 <body>
@@ -198,6 +106,68 @@
                 <button class="btn-clear" onclick="clear_page()">CLEAR</button>
             </div>
         </form>
+
+        <div class="weather-card-container">
+            <div class="result-location-section">
+                <p id="weather-city-state-title"> -, -</p>
+            </div>
+
+            <div class="icon-temp-section">
+                <div class="weather-icon">
+                    <div class="weather-icon-img-section">
+                        <span class="weather-img-helper"></span>
+                        <img id="weather-img" src="/static/Images/clear_day.svg" width="80%">
+                    </div>
+                    <div class="weather-icon-text-section">
+                        <p id="weather-img-text" style="text-align: left; padding-left: 18%; vertical-align: middle;">
+                            Clear
+                    </div>
+                    </p>
+                </div>
+                <div class="weather-temperature">
+                    <p><span id="weather-card-temp"></span>&#176</p>
+                </div>
+            </div>
+
+            <div class="weather-stats-section">
+                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                    <p class="stats-text">Humidity</p>
+                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-16-512.png" alt=""
+                        class="stats-icons">
+                    <p class="stats-text"><span id="weather-humidity"></span>%</p>
+                </div>
+                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                    <p class="stats-text">Pressure</p>
+                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-25-512.png" alt=""
+                        class="stats-icons">
+                    <p class="stats-text"><span id="weather-pressure"></span>inHg</p>
+                </div>
+                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                    <p class="stats-text">Wind Speed</p>
+                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-27-512.png" alt=""
+                        class="stats-icons">
+                    <p class="stats-text"><span id="weather-wind"></span>mph</p>
+                </div>
+                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                    <p class="stats-text">Visibility</p>
+                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-30-512.png" alt=""
+                        class="stats-icons">
+                    <p class="stats-text"><span id="weather-visibility"></span>mi</p>
+                </div>
+                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                    <p class="stats-text">Cloud Cover</p>
+                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-28-512.png" alt=""
+                        class="stats-icons">
+                    <p class="stats-text"><span id="weather-cloud"></span>%</p>
+                </div>
+                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                    <p class="stats-text">UV Level</p>
+                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-24-512.png" alt=""
+                        class="stats-icons">
+                    <p class="stats-text"><span id="weather-UV"></span></p>
+                </div>
+            </div>
+        </div>
 
         <div class="no-result-section">
             <p>No records have been found.</p>
