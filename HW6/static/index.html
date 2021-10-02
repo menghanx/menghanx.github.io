@@ -109,15 +109,12 @@
 
         <div class="weather-card-container">
             <div class="result-location-section">
-                <p id="weather-city-state-title"> -, -</p>
+                <p id="weather-city-state-title"> City, State</p>
             </div>
 
             <div class="icon-temp-section">
                 <div class="weather-icon">
-                    <div class="weather-icon-img-section">
-                        <span class="weather-img-helper"></span>
-                        <img id="weather-img" src="/static/Images/clear_day.svg" width="80%">
-                    </div>
+                    <div class="weather-icon-img-section" id="weather-img"></div>
                     <div class="weather-icon-text-section">
                         <p id="weather-img-text" style="text-align: left; padding-left: 18%; vertical-align: middle;">
                             Clear
@@ -169,7 +166,7 @@
             </div>
         </div>
 
-        <div class="no-result-section">
+        <div class="no-result-section" id="no-result-section">
             <p>No records have been found.</p>
         </div>
 

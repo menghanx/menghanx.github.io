@@ -30,7 +30,7 @@ SAMPLE_JSON = {
                             "temperatureMin": 56.64,
                             "uvIndex": 1,
                             "visibility": 9.94,
-                            "weatherCode": 3000,
+                            "weatherCode": 1000,
                             "windDirection": 356.88,
                             "windSpeed": 8.52
                         }

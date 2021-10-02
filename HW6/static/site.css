@@ -128,7 +128,7 @@ hr{
 }
 
 .no-result-section{
-    /* display: none; */
+    display: none;
     width: 60%;
     height: 30px;
     line-height: 30px;
@@ -155,8 +155,13 @@ hr{
 
 .result-location-section {
     grid-row: span 3;
-    background-color: yellow;
     width: 100%;
+    color: #909090;
+    font-size: 1.6em;
+}
+
+#weather-city-state-title {
+    margin: 20px 40px;
 }
 
 .icon-temp-section {
@@ -177,32 +182,31 @@ hr{
 }
 
 .weather-icon-img-section{
-    grid-row: span 11;
-    white-space: nowrap;
-    text-align: center;
+    grid-row: span 10;
+    background-size: auto 160px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .weather-icon-text-section{
-    grid-row: span 2;
-}
-
-.weather-img-helper{
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-#weather-img{
-    vertical-align: middle;
+    grid-row: span 3;
+    color: #828282;
+    font-size: 1.4em;
 }
 
 .weather-temperature{
     grid-column: span 3;
     height: 200px;
     width: 100%;
-    background-color: tomato;
+    text-align: center;
+    font-size: 9em;
+    color: #828282;
+    font-weight:300
 }
 
+#weather-card-temp {
+    padding-bottom: 40px;
+}
 .weather-stats-section{
     grid-row: span 8;
     background-color: white;
@@ -212,10 +216,17 @@ hr{
 }
 
 .weather-stat-cell{
-    background-color: rgb(119, 243, 243);
     text-align: center;
+    color: #828282;
+    padding-top: 10px;
+}
+.stats-text {
+    padding: 10px 0;
 }
 
+.stats-icons{
+    padding: 10px 0;
+}
 .weather-stat-cell img {
     max-width: 33%;  
 }

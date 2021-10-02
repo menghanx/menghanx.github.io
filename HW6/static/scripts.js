@@ -115,6 +115,8 @@ function get_weather_data(geo_location) {
     fetch(url).
         then(function (response) {
             if (response.status !== 200) {
+                // Display No records
+                document.getElementById("no-result-section").style.display = "";
                 console.log(`Response status: ${response.status}`);
                 return;
             }
@@ -139,10 +141,10 @@ function populate_result(data) {
         img_src = "/static/Images/tstorm.svg";
         img_txt = "Invalid Weather Code";
     }
-    document.getElementById("weather-img").src = img_src;
+    document.getElementById("weather-img").style.backgroundImage = "url('" + img_src + "')";
     document.getElementById("weather-img-text").innerHTML = img_txt;
     // Populate other weahter stats
-    document.getElementById("weather-card-temp").innerHTML = Math.round(curr_weather_data.temperature);
+    document.getElementById("weather-card-temp").innerHTML = Math.round(curr_weather_data.temperature * 10) / 10;
     document.getElementById("weather-humidity").innerHTML = curr_weather_data.humidity;
     document.getElementById("weather-pressure").innerHTML = curr_weather_data.pressureSeaLevel;
     document.getElementById("weather-wind").innerHTML = curr_weather_data.windSpeed;
