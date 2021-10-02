@@ -2857,7 +2857,7 @@ def get_weather():
         return jsonify({"Response": "Invailid request, expected params: lat,lng"})
 
     # Build query string
-    debug_mode = False
+    debug_mode = True
     if debug_mode:
         data_json = SAMPLE_JSON
     else:

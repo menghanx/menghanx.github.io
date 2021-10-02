@@ -16,19 +16,24 @@ body{
     margin-bottom: 250px;
 }
 
+/* Working on form here 
+________________________________________________________
+
+*/
+
 .required {
     color: red;
 }
 
 .container{
-    max-width: 1000px;
+    max-width: 1200px;
     width: 100%;
     height: 100%;   
 }
 
 .title-container{
     height: 140px;
-    width: 60%;
+    width: 650px;
     margin: 0px auto;
     margin-top: 40px;
     background-image: url("/static/Images/banner.jpg");
@@ -39,7 +44,7 @@ body{
    
 
 form {
-    width: 60%;
+    width: 650px;
     margin: 0px auto;
     padding: 20px 40px 40px 40px;
     background: #fff;
@@ -118,6 +123,20 @@ hr{
     border: none;
 }
 
+.btn-submit:hover {
+    background-color: #7088b4;
+}
+
+.btn-submit:focus {
+    background-color: #4e70b0;
+    border: 1px solid black;
+}
+
+.btn-submit::after {
+    background-color: #4e70b0;
+    border: 1px solid black;
+}
+
 .btn-clear{
     font-size: 1em;
     background-color: #fcb400;
@@ -127,6 +146,26 @@ hr{
     box-shadow: 0 4px #fb8603;
     border: none;
 }
+
+.btn-clear:hover{
+    background-color: #fcc63d;
+}
+
+
+.btn-clear:focus{
+    background-color: #fcb400;
+    border: 1px solid black;
+}
+
+.btn-clear::after{
+    background-color: #fcb400;
+    border: 1px solid black;
+}
+
+/* Working on No reuslt section here 
+________________________________________________________
+
+*/
 
 .no-result-section{
     display: none;
@@ -145,6 +184,11 @@ hr{
     color: #092936;
 }
 
+/* Working on weahter card here 
+________________________________________________________
+
+*/
+
 .weather-card-wrapper {
     display: none;
 }
@@ -156,7 +200,12 @@ hr{
     background-color: white;
     display: grid;
     grid-template-rows: repeat(20, 1fr);
+    border: 2px solid #d8d8d8;
 }
+
+.weather-card-container:hover {
+    box-shadow: 0px 5px 10px #a39f9f;
+  }
 
 .result-location-section {
     grid-row: span 3;
@@ -235,6 +284,47 @@ hr{
 .weather-stat-cell img {
     max-width: 33%;  
 }
+
+
+/* Working on table here 
+________________________________________________________
+
+*/
+.weather-table-wrapper {
+    width: 100%;
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th{
+    background-color: #4f6eae;
+    height: 40px;
+    text-align: center;
+}
+
+tr {
+    height: auto;
+    background-color: white;
+    text-align: center;
+}
+
+.table_row_icon {
+    width: 70px;
+}
+
+weather-table #table-header{
+    height: 30px;
+}
+
+/* Working on detail result here 
+________________________________________________________
+
+*/
 
 .detail-container{
     display: none;

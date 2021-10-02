@@ -34,6 +34,7 @@ function hide_all_div() {
     document.getElementById("no-result-section").style.display = "none";
     document.getElementById("weather-card-wrapper").style.display = "none";
     document.getElementById("detail-container").style.display = "none";
+    document.getElementById("weather-table-wrapper").style.display = "none";
 }
 
 // store location data in json object entry, and build param with it for backend API call
@@ -135,6 +136,92 @@ function get_weather_data(geo_location) {
         });
 }
 
+function processTableJson(data) {
+    var days = [];
+    for (var i = 0; i < data.length; i++) {
+        var row = JSON.parse(JSON.stringify(data[i].values));
+        // data[i].values = data[i].startTime;
+        row["startTime"] = data[i].startTime;
+        days.push(row);
+    }
+    return days;
+}
+
+function jsonToTable(data) {
+    // json data [ {day 1}, {day 2}, ... {day n}]
+    var jsonData = processTableJson(data);
+
+    // Create a table element
+    var table = document.createElement("table");
+
+    // Table header and the key to look up the value of each column
+    var headers = ["Date", "Status", "Temp High", "Temp Low", "Wind Speed"];
+    var keys = ["startTime", "weatherCode", "temperatureMax", "temperatureMin", "windSpeed"];
+
+    // Generate header row, use -1 to append tr to the last row
+    var tr = table.insertRow(-1);
+    for (var i = 0; i < headers.length; i++) {
+        var th = document.createElement("th");
+        th.innerHTML = headers[i];
+        tr.appendChild(th);
+    }
+
+    // add json data to table rows
+    for (var i = 0; i < jsonData.length; i++) {
+
+        tr = table.insertRow(-1);
+
+        for (var j = 0; j < keys.length; j++) {
+            var cell = tr.insertCell(-1);
+            // for weather code, j==1, turn code into icon and weather description
+            if (j == 0) {
+                var date = new Date(jsonData[i][keys[j]]);
+                var weekday = date.toLocaleDateString("en-US", { weekday: 'long' });
+                var day = ("0" + date.getDate()).slice(-2);
+                var month = date.toLocaleDateString("en-US", { month: 'short' });
+                var year = date.toLocaleDateString("en-US", { year: 'numeric' });
+                var formatted_date = weekday + ", " + day + " " + month + " " + year;
+                cell.innerHTML = formatted_date;
+            }
+            else if (j == 1) {
+                // Get icon corresponding to the weather code
+                weather_code = jsonData[i][keys[j]];
+                var icon_src = "";
+                var icon_txt = "";
+                if (weather_code in icon_mapping) {
+                    icon_src = icon_mapping[weather_code][0];
+                    icon_txt = icon_mapping[weather_code][1];
+                } else {
+                    icon_src = "/static/Images/tstorm.svg";
+                    icon_txt = "Invalid Weather Code";
+                }
+                icon = document.createElement("img");
+                icon.className = "table_row_icon";
+                icon.src = icon_src;
+                cell.appendChild(icon);
+
+                // get description corresponding to the weather code
+                text_span = document.createElement("span");
+                text_span.innerHTML = icon_txt;
+                cell.appendChild(text_span);
+
+                // cell style
+                cell.style.display = "flex";
+                cell.style.alignItems = "center";
+                cell.style.justifyContent = "center";
+            }
+            else {
+                cell.innerHTML = jsonData[i][keys[j]];
+            }
+        }
+    }
+
+    // div where table is shown
+    var table_div = document.getElementById("weather-table-div");
+    table_div.appendChild(table);
+
+}
+
 function populate_result(data) {
     // Weather Card
     document.getElementById("weather-card-wrapper").style.display = "block";
@@ -162,7 +249,8 @@ function populate_result(data) {
     document.getElementById("weather-UV").innerHTML = curr_weather_data.uvIndex;
 
     // Others to do
-
+    jsonToTable(data.data.timelines[2].intervals);
+    document.getElementById("weather-table-wrapper").style.display = "block";
     console.log(data);
 }
 
