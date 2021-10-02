@@ -8,7 +8,7 @@
 
 body{
     display: flex;
-    height: 100vh;
+    height: auto;
     justify-content: center;
     align-items: center;
     background: #e6e6e6;
@@ -30,6 +30,7 @@ body{
     height: 140px;
     width: 60%;
     margin: 0px auto;
+    margin-top: 40px;
     background-image: url("/static/Images/banner.jpg");
     background-position-y: -80px;
     padding: 30px 40px 20px 40px;
@@ -144,6 +145,10 @@ hr{
     color: #092936;
 }
 
+.weather-card-wrapper {
+    display: none;
+}
+
 .weather-card-container{
     max-height: 450px;
     width: 800px;
@@ -232,10 +237,10 @@ hr{
 }
 
 .detail-container{
+    display: none;
     width: 60%;
     margin: 0 auto;
-    max-height: 600px;
-    height: 100%; 
+    height: 650px; 
 }
 .detail-section {
     background: linear-gradient(white , #374a6d);

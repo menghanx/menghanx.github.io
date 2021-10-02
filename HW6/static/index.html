@@ -107,69 +107,6 @@
             </div>
         </form>
 
-        <div class="weather-card-container">
-            <div class="result-location-section">
-                <p id="weather-city-state-title"> City, State</p>
-            </div>
-
-            <div class="icon-temp-section">
-                <div class="weather-icon">
-                    <div class="weather-icon-img-section" id="weather-img"></div>
-                    <div class="weather-icon-text-section">
-                        <p id="weather-img-text" style="text-align: left; padding-left: 18%; vertical-align: middle;">
-                            Clear
-                    </div>
-                    </p>
-                </div>
-                <div class="weather-temperature">
-                    <p><span id="weather-card-temp"></span>&#176</p>
-                </div>
-            </div>
-
-            <div class="weather-stats-section">
-                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
-                    <p class="stats-text">Humidity</p>
-                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-16-512.png" alt=""
-                        class="stats-icons">
-                    <p class="stats-text"><span id="weather-humidity"></span>%</p>
-                </div>
-                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
-                    <p class="stats-text">Pressure</p>
-                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-25-512.png" alt=""
-                        class="stats-icons">
-                    <p class="stats-text"><span id="weather-pressure"></span>inHg</p>
-                </div>
-                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
-                    <p class="stats-text">Wind Speed</p>
-                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-27-512.png" alt=""
-                        class="stats-icons">
-                    <p class="stats-text"><span id="weather-wind"></span>mph</p>
-                </div>
-                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
-                    <p class="stats-text">Visibility</p>
-                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-30-512.png" alt=""
-                        class="stats-icons">
-                    <p class="stats-text"><span id="weather-visibility"></span>mi</p>
-                </div>
-                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
-                    <p class="stats-text">Cloud Cover</p>
-                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-28-512.png" alt=""
-                        class="stats-icons">
-                    <p class="stats-text"><span id="weather-cloud"></span>%</p>
-                </div>
-                <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
-                    <p class="stats-text">UV Level</p>
-                    <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-24-512.png" alt=""
-                        class="stats-icons">
-                    <p class="stats-text"><span id="weather-UV"></span></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="no-result-section" id="no-result-section">
-            <p>No records have been found.</p>
-        </div>
-
         <div class="detail-container" id="detail-container">
             <div class="detail-title">
                 <h1>Daily Weather Details</h2>
@@ -184,8 +121,72 @@
             </div>
         </div>
 
+        <div class="weather-card-wrapper" id="weather-card-wrapper">
+            <div class="weather-card-container">
+                <div class="result-location-section">
+                    <p id="weather-city-state-title"> City, State</p>
+                </div>
+
+                <div class="icon-temp-section">
+                    <div class="weather-icon">
+                        <div class="weather-icon-img-section" id="weather-img"></div>
+                        <div class="weather-icon-text-section">
+                            <p id="weather-img-text"
+                                style="text-align: left; padding-left: 18%; vertical-align: middle;">
+                                Clear
+                        </div>
+                        </p>
+                    </div>
+                    <div class="weather-temperature">
+                        <p><span id="weather-card-temp"></span>&#176</p>
+                    </div>
+                </div>
+
+                <div class="weather-stats-section">
+                    <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                        <p class="stats-text">Humidity</p>
+                        <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-16-512.png" alt=""
+                            class="stats-icons">
+                        <p class="stats-text"><span id="weather-humidity"></span>%</p>
+                    </div>
+                    <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                        <p class="stats-text">Pressure</p>
+                        <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-25-512.png" alt=""
+                            class="stats-icons">
+                        <p class="stats-text"><span id="weather-pressure"></span>inHg</p>
+                    </div>
+                    <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                        <p class="stats-text">Wind Speed</p>
+                        <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-27-512.png" alt=""
+                            class="stats-icons">
+                        <p class="stats-text"><span id="weather-wind"></span>mph</p>
+                    </div>
+                    <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                        <p class="stats-text">Visibility</p>
+                        <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-30-512.png" alt=""
+                            class="stats-icons">
+                        <p class="stats-text"><span id="weather-visibility"></span>mi</p>
+                    </div>
+                    <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                        <p class="stats-text">Cloud Cover</p>
+                        <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-28-512.png" alt=""
+                            class="stats-icons">
+                        <p class="stats-text"><span id="weather-cloud"></span>%</p>
+                    </div>
+                    <div style="grid-column: span 1; height: 100%;" class="weather-stat-cell">
+                        <p class="stats-text">UV Level</p>
+                        <img src="https://cdn2.iconfinder.com/data/icons/weather-74/24/weather-24-512.png" alt=""
+                            class="stats-icons">
+                        <p class="stats-text"><span id="weather-UV"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
+        <div class="no-result-section" id="no-result-section">
+            <p>No records have been found.</p>
+        </div>
 
     </div>
 

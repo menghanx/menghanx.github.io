@@ -30,11 +30,18 @@ var icon_mapping =
     "8000": ["/static/Images/tstorm.svg", "Thunderstorm"]
 }
 
+function hide_all_div() {
+    document.getElementById("no-result-section").style.display = "none";
+    document.getElementById("weather-card-wrapper").style.display = "none";
+    document.getElementById("detail-container").style.display = "none";
+}
+
 // store location data in json object entry, and build param with it for backend API call
 function request_weather_data() {
+
+    hide_all_div();
+
     var checkBox = document.getElementById("auto-location-check");
-
-
 
     // if user choose to detect location from IP address
     if (checkBox.checked == true) {
@@ -116,7 +123,7 @@ function get_weather_data(geo_location) {
         then(function (response) {
             if (response.status !== 200) {
                 // Display No records
-                document.getElementById("no-result-section").style.display = "";
+                document.getElementById("no-result-section").style.display = "block";
                 console.log(`Response status: ${response.status}`);
                 return;
             }
@@ -130,6 +137,8 @@ function get_weather_data(geo_location) {
 
 function populate_result(data) {
     // Weather Card
+    document.getElementById("weather-card-wrapper").style.display = "block";
+
     curr_weather_data = data.data.timelines[0].intervals[0].values
     document.getElementById("weather-city-state-title").innerHTML = result_address;
     // Change icon and icon text according to weahter code
@@ -171,11 +180,12 @@ function clear_page() {
     }
 
     // clean result here and hide it
+    hide_all_div()
 }
 
 function checkbox_switch() {
     var checkBox = document.getElementById("auto-location-check");
-    var resultSection = document.getElementById("result-section");
+    // var resultSection = document.getElementById("result-section");
 
     if (checkBox.checked == true) {
         document.getElementById("input-form").reset();
