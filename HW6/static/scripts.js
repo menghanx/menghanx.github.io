@@ -40,6 +40,8 @@ var precipitation_mapping = {
 
 var weather_table_json = [];
 
+var displayCharts = false;
+
 // get formated date string 
 // input: date = new Date(date_string)
 function format_date(date) {
@@ -352,4 +354,22 @@ function checkbox_switch() {
         // uncheck the checkbox should reset everything on the page
         clear_page()
     }
+}
+
+function toggle_chart() {
+    // to show charts
+    if (!displayCharts) {
+        document.getElementById("up-arrow").style.display = "block";
+        document.getElementById("down-arrow").style.display = "none";
+        document.getElementById("temp-range-chart-container").style.display = "block";
+        document.getElementById("hourly-weather-chart-container").style.display = "block";
+    }
+    // to hide charts
+    else {
+        document.getElementById("up-arrow").style.display = "none";
+        document.getElementById("down-arrow").style.display = "block";
+        document.getElementById("temp-range-chart-container").style.display = "none";
+        document.getElementById("hourly-weather-chart-container").style.display = "none";
+    }
+    displayCharts = !displayCharts;
 }

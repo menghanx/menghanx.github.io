@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/Images/clear_day.svg" />
     <link rel="stylesheet" type="text/css" href="/static/site.css" />
+    <link rel="stylesheet" type="text/css" href="/static/chart1.css" />
+    <!-- Import Highchart -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="/static/scripts.js"></script>
     <title>Weather</title>
 
@@ -109,7 +117,7 @@
 
         <div class="detail-container" id="detail-container">
             <div class="detail-title">
-                <h1>Daily Weather Details</h2>
+                <h1>Daily Weather Details</h1>
             </div>
 
             <div class="detail-section">
@@ -142,6 +150,32 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="weather-chart-container">
+            <div class="weather-chart-title">
+                <h1>Weather Charts</h1>
+            </div>
+
+            <div class="arrow-section">
+                <img id="down-arrow" src="/static/Images/point-down-512.png" onclick="toggle_chart()" alt="">
+                <img id="up-arrow" src="/static/Images/point-up-512.png" onclick="toggle_chart()" alt="">
+            </div>
+
+            <div class="temp-range-chart-container" id="temp-range-chart-container">
+                <h3>chart1</h3>
+                <figure class="highcharts-figure">
+                    <div id="temp-range-chart"></div>
+                </figure>
+            </div>
+
+            <div class="hourly-weather-chart-container" id="hourly-weather-chart-container">
+                <h3>chart2</h3>
+                <div class="p"></div>
+                <div class="p"></div>
+                <div class="p"></div>
+            </div>
+
         </div>
 
         <div class="weather-card-wrapper" id="weather-card-wrapper">
