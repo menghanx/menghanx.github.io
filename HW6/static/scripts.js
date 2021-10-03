@@ -1,5 +1,5 @@
 var result_address = "-";
-var GEO_API_KEY = "AIzaSyCLJBmNPC4h2bQlqiUl17X0m0hzYMgKzAs"
+var GEO_API_KEY = "AIzaSyCLJBmNPC4h2bQlqiUl17X0m0hzYMgKzAs";
 var icon_mapping =
 {
     "1000": ["/static/Images/clear_day.svg", "Clear"],
@@ -28,8 +28,29 @@ var icon_mapping =
     "7101": ["/static/Images/ice_pellets_heavy.svg", "Heavy Ice Pellets"],
     "7102": ["/static/Images/ice_pellets_light.svg", "Light Ice Pellets"],
     "8000": ["/static/Images/tstorm.svg", "Thunderstorm"]
+};
+
+var precipitation_mapping = {
+    "0": "N/A",
+    "1": "Rain",
+    "2": "Snow",
+    "3": "Freezing Rain",
+    "4": "Ice Pellets"
 }
 
+var weather_table_json = [];
+
+// get formated date string 
+// input: date = new Date(date_string)
+function format_date(date) {
+    var weekday = date.toLocaleDateString("en-US", { weekday: 'long' });
+    var day = ("0" + date.getDate()).slice(-2);
+    var month = date.toLocaleDateString("en-US", { month: 'short' });
+    var year = date.toLocaleDateString("en-US", { year: 'numeric' });
+    return weekday + ", " + day + " " + month + " " + year;
+}
+
+// Hide all divs
 function hide_all_div() {
     document.getElementById("no-result-section").style.display = "none";
     document.getElementById("weather-card-wrapper").style.display = "none";
@@ -56,7 +77,7 @@ function request_weather_data() {
                     then(function (data) {
                         // Get city and state to display in the weather card
                         result_address = data.city + ", " + data.region + ", " + data.country;
-                        console.log(result_address);
+                        // console.log(result_address);
                         // Pass geo_location to get_weather_data()
                         get_weather_data(data.loc);
                     })
@@ -88,8 +109,8 @@ function request_weather_data() {
                     then(function (data) {
                         // get formatted address
                         result_address = data.results[0].formatted_address;
-                        console.log(result_address);
-                        console.log(data);
+                        // console.log(result_address);
+                        // console.log(data);
 
 
                         // get geo location, pass to get_weather_data()
@@ -136,20 +157,60 @@ function get_weather_data(geo_location) {
         });
 }
 
+function show_detail_weather(index) {
+    hide_all_div();
+    document.getElementById("detail-container").style.display = "block";
+
+    // Gather all the weather details
+    var date = format_date(new Date(weather_table_json[index].startTime));
+    var weather_code = weather_table_json[index].weatherCode;
+    var icon_src = "";
+    var icon_txt = "";
+    if (weather_code in icon_mapping) {
+        icon_src = icon_mapping[weather_code][0];
+        icon_txt = icon_mapping[weather_code][1];
+    } else {
+        icon_src = "/static/Images/tstorm.svg";
+        icon_txt = "Invalid Weather Code";
+    }
+    var maxTemp = weather_table_json[index].temperatureMax;
+    var minTemp = weather_table_json[index].temperatureMin;
+    var precipitation = precipitation_mapping[weather_table_json[index].precipitationType];
+    var chancerain = weather_table_json[index].precipitationProbability;
+    var windspeed = weather_table_json[index].windSpeed;
+    var humidity = weather_table_json[index].humidity;
+    var visibility = weather_table_json[index].visibility;
+    var sunrise = new Date(weather_table_json[index].sunriseTime).getHours() % 12;
+    var sunset = new Date(weather_table_json[index].sunsetTime).getHours() % 12;
+
+    // populate weather detail section
+    document.getElementById("weather-detail-date").innerHTML = date;
+    document.getElementById("weather-detail-desc").innerHTML = icon_txt;
+    document.getElementById("weather-detail-maxTemp").innerHTML = maxTemp;
+    document.getElementById("weather-detail-minTemp").innerHTML = minTemp;
+    document.getElementById("top-right-detail").style.backgroundImage = "url('" + icon_src + "')";
+    document.getElementById("weather-detail-precipitation").innerHTML = precipitation;
+    document.getElementById("weather-detail-chancerain").innerHTML = chancerain;
+    document.getElementById("weather-detail-windspeed").innerHTML = windspeed;
+    document.getElementById("weather-detail-humidity").innerHTML = humidity;
+    document.getElementById("weather-detail-visibility").innerHTML = visibility;
+    document.getElementById("weather-detail-sunrise").innerHTML = sunrise;
+    document.getElementById("weather-detail-sunset").innerHTML = sunset;
+
+}
+
 function processTableJson(data) {
-    var days = [];
     for (var i = 0; i < data.length; i++) {
         var row = JSON.parse(JSON.stringify(data[i].values));
         // data[i].values = data[i].startTime;
         row["startTime"] = data[i].startTime;
-        days.push(row);
+        weather_table_json.push(row);
     }
-    return days;
 }
 
 function jsonToTable(data) {
-    // json data [ {day 1}, {day 2}, ... {day n}]
-    var jsonData = processTableJson(data);
+    // populate weather_table_json  [ {day 1}, {day 2}, ... {day n}]
+    processTableJson(data);
 
     // Create a table element
     var table = document.createElement("table");
@@ -167,25 +228,21 @@ function jsonToTable(data) {
     }
 
     // add json data to table rows
-    for (var i = 0; i < jsonData.length; i++) {
+    for (var i = 0; i < weather_table_json.length; i++) {
 
         tr = table.insertRow(-1);
+        tr.id = "day " + i;
 
         for (var j = 0; j < keys.length; j++) {
             var cell = tr.insertCell(-1);
             // for weather code, j==1, turn code into icon and weather description
             if (j == 0) {
-                var date = new Date(jsonData[i][keys[j]]);
-                var weekday = date.toLocaleDateString("en-US", { weekday: 'long' });
-                var day = ("0" + date.getDate()).slice(-2);
-                var month = date.toLocaleDateString("en-US", { month: 'short' });
-                var year = date.toLocaleDateString("en-US", { year: 'numeric' });
-                var formatted_date = weekday + ", " + day + " " + month + " " + year;
-                cell.innerHTML = formatted_date;
+                var date = new Date(weather_table_json[i][keys[j]]);
+                cell.innerHTML = format_date(date);
             }
             else if (j == 1) {
                 // Get icon corresponding to the weather code
-                weather_code = jsonData[i][keys[j]];
+                weather_code = weather_table_json[i][keys[j]];
                 var icon_src = "";
                 var icon_txt = "";
                 if (weather_code in icon_mapping) {
@@ -211,9 +268,18 @@ function jsonToTable(data) {
                 cell.style.justifyContent = "center";
             }
             else {
-                cell.innerHTML = jsonData[i][keys[j]];
+                cell.innerHTML = weather_table_json[i][keys[j]];
             }
         }
+
+        // add row click handler
+        var createClickHandler = function (tr) {
+            return function () {
+                var index = tr.id.toString().split(' ')[1];
+                show_detail_weather(index);
+            };
+        };
+        tr.onclick = createClickHandler(tr);
     }
 
     // div where table is shown
@@ -251,7 +317,8 @@ function populate_result(data) {
     // Others to do
     jsonToTable(data.data.timelines[2].intervals);
     document.getElementById("weather-table-wrapper").style.display = "block";
-    console.log(data);
+
+    // console.log(data);
 }
 
 // This button to clear input form and result
