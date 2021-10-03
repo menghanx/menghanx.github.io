@@ -341,7 +341,12 @@ ________________________________________________________
     display: grid;
     background: linear-gradient(white , #364668);
     grid-template-rows: repeat(9, 1fr); 
+    border: 1px solid #d8d8d8;
 }
+
+.detail-section:hover {
+    box-shadow: 0px 5px 10px #a39f9f;
+  }
 
 .detail-title {
     margin: auto;
