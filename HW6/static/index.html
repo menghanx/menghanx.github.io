@@ -8,6 +8,8 @@
     <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/Images/clear_day.svg" />
     <link rel="stylesheet" type="text/css" href="/static/site.css" />
     <link rel="stylesheet" type="text/css" href="/static/chart1.css" />
+    <script src="/static/chart1.js"></script>
+    <script src="/static/scripts.js"></script>
     <!-- Import Highchart -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
@@ -15,14 +17,13 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script src="/static/scripts.js"></script>
     <title>Weather</title>
 
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container" id="main-container">
         <div class="title-container">
             <div class="form-title">
                 <h3>Weather Search</h3>
@@ -152,7 +153,7 @@
             </div>
         </div>
 
-        <div class="weather-chart-container">
+        <div class="weather-chart-container" id="weather-chart-container">
             <div class="weather-chart-title">
                 <h1>Weather Charts</h1>
             </div>
@@ -163,17 +164,15 @@
             </div>
 
             <div class="temp-range-chart-container" id="temp-range-chart-container">
-                <h3>chart1</h3>
                 <figure class="highcharts-figure">
-                    <div id="temp-range-chart"></div>
+                    <div id="chart1"></div>
                 </figure>
             </div>
 
             <div class="hourly-weather-chart-container" id="hourly-weather-chart-container">
-                <h3>chart2</h3>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
+                <figure class="highcharts-figure">
+                    <div id="chart2"></div>
+                </figure>
             </div>
 
         </div>

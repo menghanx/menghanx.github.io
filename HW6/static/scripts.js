@@ -9,9 +9,9 @@ var icon_mapping =
     "1102": ["/static/Images/mostly_cloudy.svg", "Mostly Cloudy"],
     "2000": ["/static/Images/fog.svg", "Fog"],
     "2100": ["/static/Images/fog_light.svg", "Light Fog"],
-    "3000": ["https://www.clipartmax.com/png/middle/31-318730_cold-wind-blowing-vectorwind-blow-icon.png", "Light Wind"],
-    "3001": ["https://www.clipartmax.com/png/middle/31-319198_winds-weather-symbol-vectorweather-symbol-for-wind.png", "Wind"],
-    "3002": ["https://www.clipartmax.com/png/middle/2-27821_wind-clipart-forecast-icon-line-icon-weather-wind-windy-wind-clipart.png", "Strong Wind"],
+    "3000": ["/static/Images/light_wind.jpg", "Light Wind"],
+    "3001": ["/static/Images/wind.png", "Wind"],
+    "3002": ["/static/Images/strong-wind.png", "Strong Wind"],
     "4000": ["/static/Images/drizzle.svg", "Drizzle"],
     "4001": ["/static/Images/rain.svg", "Rain"],
     "4200": ["/static/Images/rain_light.svg", "Light Rain"],
@@ -40,6 +40,8 @@ var precipitation_mapping = {
 
 var weather_table_json = [];
 
+var chart1_json = [];
+
 var displayCharts = false;
 
 // get formated date string 
@@ -58,6 +60,7 @@ function hide_all_div() {
     document.getElementById("weather-card-wrapper").style.display = "none";
     document.getElementById("detail-container").style.display = "none";
     document.getElementById("weather-table-wrapper").style.display = "none";
+    document.getElementById("weather-chart-container").style.display = "none";
 }
 
 // store location data in json object entry, and build param with it for backend API call
@@ -111,9 +114,6 @@ function request_weather_data() {
                     then(function (data) {
                         // get formatted address
                         result_address = data.results[0].formatted_address;
-                        // console.log(result_address);
-                        // console.log(data);
-
 
                         // get geo location, pass to get_weather_data()
                         var geo_lat = data.results[0].geometry.location.lat;
@@ -137,6 +137,9 @@ function request_weather_data() {
 // This function builds request url and send it to an API hosted by backend
 // This call should populate data for current, 1h and 1d
 function get_weather_data(geo_location) {
+    // reset data only
+    weather_table_json = [];
+    chart1_json = [];
 
     var entry = {
         loc: geo_location
@@ -162,6 +165,7 @@ function get_weather_data(geo_location) {
 function show_detail_weather(index) {
     hide_all_div();
     document.getElementById("detail-container").style.display = "block";
+    document.getElementById("weather-chart-container").style.display = "block";
 
     // Gather all the weather details
     var date = format_date(new Date(weather_table_json[index].startTime));
@@ -210,12 +214,29 @@ function processTableJson(data) {
     }
 }
 
+function getChart1data(data) {
+    // {[date, low, hight]}
+    // reset data each time.
+    chart1_json = [];
+
+    for (var i = 0; i < data.length; i++) {
+        var date_mil = new Date(data[i].startTime).getTime();
+        var max_temp = data[i].values.temperatureMax;
+        var min_temp = data[i].values.temperatureMin;
+        chart1_json.push([date_mil, min_temp, max_temp]);
+    }
+}
+
 function jsonToTable(data) {
     // populate weather_table_json  [ {day 1}, {day 2}, ... {day n}]
     processTableJson(data);
 
+    // Prepare chart 1 data 
+    getChart1data(data);
+
     // Create a table element
     var table = document.createElement("table");
+    table.id = "result-table";
 
     // Table header and the key to look up the value of each column
     var headers = ["Date", "Status", "Temp High", "Temp Low", "Wind Speed"];
@@ -286,6 +307,8 @@ function jsonToTable(data) {
 
     // div where table is shown
     var table_div = document.getElementById("weather-table-div");
+    // reset previous table
+    table_div.innerHTML = '';
     table_div.appendChild(table);
 
 }
@@ -316,9 +339,12 @@ function populate_result(data) {
     document.getElementById("weather-cloud").innerHTML = curr_weather_data.cloudCover;
     document.getElementById("weather-UV").innerHTML = curr_weather_data.uvIndex;
 
-    // Others to do
+    // weather - table
     jsonToTable(data.data.timelines[2].intervals);
     document.getElementById("weather-table-wrapper").style.display = "block";
+
+    // Prepare data for charts
+
 
     // console.log(data);
 }
@@ -338,6 +364,10 @@ function clear_page() {
 
     // clean result here and hide it
     hide_all_div()
+
+    // reset json vars
+    weather_table_json = [];
+    chart1_json = [];
 }
 
 function checkbox_switch() {
@@ -357,8 +387,13 @@ function checkbox_switch() {
 }
 
 function toggle_chart() {
+
     // to show charts
     if (!displayCharts) {
+        // Draw Chart1 and Chart2 on click
+        drawChart1(chart1_json);
+        var chartDiv = document.getElementById("weather-chart-container");
+        chartDiv.scrollIntoView();
         document.getElementById("up-arrow").style.display = "block";
         document.getElementById("down-arrow").style.display = "none";
         document.getElementById("temp-range-chart-container").style.display = "block";
@@ -366,6 +401,8 @@ function toggle_chart() {
     }
     // to hide charts
     else {
+        var formDiv = document.getElementById("main-container");
+        formDiv.scrollIntoView();
         document.getElementById("up-arrow").style.display = "none";
         document.getElementById("down-arrow").style.display = "block";
         document.getElementById("temp-range-chart-container").style.display = "none";
