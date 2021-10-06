@@ -111,6 +111,7 @@ function get_weather_data(geo_location) {
     };
     var url = new URL(`${window.origin}/weather-api/json`);
     url.search = new URLSearchParams(entry).toString();
+
     fetch(url).
         then(function (response) {
             if (response.status !== 200) {
