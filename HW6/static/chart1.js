@@ -9,7 +9,8 @@ function drawChart1(data) {
                 minWidth: 600,
                 scrollPositionX: 1
             },
-            width: 950
+            width: 950,
+            height: 380
         },
 
         title: {
@@ -32,7 +33,7 @@ function drawChart1(data) {
         tooltip: {
             crosshairs: true,
             shared: true,
-            valueSuffix: '°C',
+            valueSuffix: '°F',
             xDateFormat: '%A, %b %e'
         },
 

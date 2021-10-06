@@ -458,8 +458,22 @@ h1{
 
 .temp-range-chart-container {
     display: none;
+    text-align: center;
+}
+
+
+#chart1 {
+    height: 400px;
+    text-align: center;
 }
 
 .hourly-weather-chart-container {
     display: none;
+    margin-top: 30px;
+}
+
+/* Make charts stay in the center and width */
+.highcharts-figure, .highcharts-data-table table {
+    width: 950px;
+    margin: 1em auto;
 }

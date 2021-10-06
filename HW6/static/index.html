@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/Images/clear_day.svg" />
     <link rel="stylesheet" type="text/css" href="/static/site.css" />
-    <link rel="stylesheet" type="text/css" href="/static/chart1.css" />
-    <script src="/static/chart1.js"></script>
-    <script src="/static/scripts.js"></script>
+    <script type="text/javascript" src="/static/chart1.js"></script>
+    <script type="text/javascript" src="/static/chart2.js"></script>
+    <script type="text/javascript" src="/static/constants.js"></script>
+    <script type="text/javascript" src="/static/scripts.js"></script>
     <!-- Import Highchart -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
@@ -17,6 +18,10 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/windbarb.js"></script>
+    <script src="https://code.highcharts.com/modules/pattern-fill.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <!-- End Highchart import -->
     <title>Weather</title>
 
 </head>
@@ -110,9 +115,10 @@
                     onclick="checkbox_switch()" autocomplete="off">
             </div>
 
-            <div class="button">
+            <div class="button" id="button-div">
                 <input class="btn-submit" type="submit" value="SUBMIT">
-                <button class="btn-clear" onclick="clear_page()">CLEAR</button>
+                <!-- <button class="btn-clear" onclick="clear_page()">CLEAR</button> -->
+                <input type="reset" value="CLEAR" class="btn-clear" onclick="clear_page()">
             </div>
         </form>
 
@@ -165,13 +171,13 @@
 
             <div class="temp-range-chart-container" id="temp-range-chart-container">
                 <figure class="highcharts-figure">
-                    <div id="chart1"></div>
+                    <div class="my_charts" id="chart1"></div>
                 </figure>
             </div>
 
             <div class="hourly-weather-chart-container" id="hourly-weather-chart-container">
                 <figure class="highcharts-figure">
-                    <div id="chart2"></div>
+                    <div class="my_charts" id="chart2"></div>
                 </figure>
             </div>
 
@@ -250,7 +256,6 @@
         </div>
 
     </div>
-
 
 
 </body>

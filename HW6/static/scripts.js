@@ -1,47 +1,8 @@
+// hold data read from tomorrow.io to populate result
 var result_address = "-";
-var GEO_API_KEY = "AIzaSyCLJBmNPC4h2bQlqiUl17X0m0hzYMgKzAs";
-var icon_mapping =
-{
-    "1000": ["/static/Images/clear_day.svg", "Clear"],
-    "1001": ["/static/Images/cloudy.svg", "Cloudy"],
-    "1100": ["/static/Images/mostly_clear_day.svg", "Mostly Clear"],
-    "1101": ["/static/Images/partly_cloudy_day.svg", "Partly Cloudy"],
-    "1102": ["/static/Images/mostly_cloudy.svg", "Mostly Cloudy"],
-    "2000": ["/static/Images/fog.svg", "Fog"],
-    "2100": ["/static/Images/fog_light.svg", "Light Fog"],
-    "3000": ["/static/Images/light_wind.jpg", "Light Wind"],
-    "3001": ["/static/Images/wind.png", "Wind"],
-    "3002": ["/static/Images/strong-wind.png", "Strong Wind"],
-    "4000": ["/static/Images/drizzle.svg", "Drizzle"],
-    "4001": ["/static/Images/rain.svg", "Rain"],
-    "4200": ["/static/Images/rain_light.svg", "Light Rain"],
-    "4201": ["/static/Images/rain_heavy.svg", "Heavy Rain"],
-    "5000": ["/static/Images/snow.svg", "Snow"],
-    "5001": ["/static/Images/flurries.svg", "Flurries"],
-    "5100": ["/static/Images/snow_light.svg", "Light Snow"],
-    "5101": ["/static/Images/snow_heavy.svg", "Heavy Snow"],
-    "6000": ["/static/Images/freezing_drizzle.svg", "Freezing Drizzle"],
-    "6001": ["/static/Images/freezing_rain.svg", "Freezing Rain"],
-    "6200": ["/static/Images/freezing_rain_light.svg", "Light Freezing Rain"],
-    "6201": ["/static/Images/freezing_rain_heavy.svg", "Heavy Freezing Rain"],
-    "7000": ["/static/Images/ice_pellets.svg", "Ice Pellets"],
-    "7101": ["/static/Images/ice_pellets_heavy.svg", "Heavy Ice Pellets"],
-    "7102": ["/static/Images/ice_pellets_light.svg", "Light Ice Pellets"],
-    "8000": ["/static/Images/tstorm.svg", "Thunderstorm"]
-};
-
-var precipitation_mapping = {
-    "0": "N/A",
-    "1": "Rain",
-    "2": "Snow",
-    "3": "Freezing Rain",
-    "4": "Ice Pellets"
-}
-
 var weather_table_json = [];
-
 var chart1_json = [];
-
+var chart2_json = [];
 var displayCharts = false;
 
 // get formated date string 
@@ -68,6 +29,10 @@ function request_weather_data() {
 
     hide_all_div();
 
+    if (displayCharts) {
+        toggle_chart();
+    }
+
     var checkBox = document.getElementById("auto-location-check");
 
     // if user choose to detect location from IP address
@@ -82,7 +47,6 @@ function request_weather_data() {
                     then(function (data) {
                         // Get city and state to display in the weather card
                         result_address = data.city + ", " + data.region + ", " + data.country;
-                        // console.log(result_address);
                         // Pass geo_location to get_weather_data()
                         get_weather_data(data.loc);
                     })
@@ -102,11 +66,13 @@ function request_weather_data() {
         // build url with params
         var geo_url = new URL('https://maps.googleapis.com/maps/api/geocode/json');
         geo_url.search = new URLSearchParams(geo_entry).toString();
+
         // get location details
         fetch(geo_url).
             then(function (response) {
                 if (response.status !== 200) {
-                    console.log(`Response status: ${response.status}`);
+                    console.log(`geo lookup Failed. Response status: ${response.status}`);
+                    console.log(geo_url);
                     return;
                 }
 
@@ -123,13 +89,11 @@ function request_weather_data() {
                     })
             });
 
-
         var entry = {
             street: street.value,
             city: city.value,
             state: state.value
         };
-        // get_weather_data(entry);
     }
 
 }
@@ -140,6 +104,7 @@ function get_weather_data(geo_location) {
     // reset data only
     weather_table_json = [];
     chart1_json = [];
+    chart2_json = [];
 
     var entry = {
         loc: geo_location
@@ -205,17 +170,19 @@ function show_detail_weather(index) {
 
 }
 
+// process json data to populate the weather table
 function processTableJson(data) {
     for (var i = 0; i < data.length; i++) {
         var row = JSON.parse(JSON.stringify(data[i].values));
-        // data[i].values = data[i].startTime;
         row["startTime"] = data[i].startTime;
         weather_table_json.push(row);
     }
 }
 
+// process json data to populate the chart 1
+// format: {[date, low, high]}
 function getChart1data(data) {
-    // {[date, low, hight]}
+
     // reset data each time.
     chart1_json = [];
 
@@ -227,6 +194,7 @@ function getChart1data(data) {
     }
 }
 
+// Create a table element with a header and rows depend on the response data from tomorrow io
 function jsonToTable(data) {
     // populate weather_table_json  [ {day 1}, {day 2}, ... {day n}]
     processTableJson(data);
@@ -313,6 +281,7 @@ function jsonToTable(data) {
 
 }
 
+// Create a weather card and invoke weather table creation
 function populate_result(data) {
     // Weather Card
     document.getElementById("weather-card-wrapper").style.display = "block";
@@ -341,20 +310,20 @@ function populate_result(data) {
 
     // weather - table
     jsonToTable(data.data.timelines[2].intervals);
+    // make table visible
     document.getElementById("weather-table-wrapper").style.display = "block";
 
     // Prepare data for charts
-
-
-    // console.log(data);
+    chart2_json = data.data.timelines[1].intervals;
 }
 
-// This button to clear input form and result
+// Clear button onclick action
 function clear_page() {
 
     // clean input form and checked box
     document.getElementById("input-form").reset();
 
+    // check if input fields were disabled by checkbox
     var inputbox = document.getElementById("street")
     if (inputbox.disabled == true) {
         document.getElementById("street").disabled = false;
@@ -368,8 +337,14 @@ function clear_page() {
     // reset json vars
     weather_table_json = [];
     chart1_json = [];
+
+    // close charts
+    if (displayCharts) {
+        toggle_chart();
+    }
 }
 
+// Disable input boxes when checkbox is checked
 function checkbox_switch() {
     var checkBox = document.getElementById("auto-location-check");
     // var resultSection = document.getElementById("result-section");
@@ -386,22 +361,25 @@ function checkbox_switch() {
     }
 }
 
+// chart section toggle switch, show and hide charts each time the function is called.
 function toggle_chart() {
-
     // to show charts
     if (!displayCharts) {
         // Draw Chart1 and Chart2 on click
         drawChart1(chart1_json);
-        var chartDiv = document.getElementById("weather-chart-container");
-        chartDiv.scrollIntoView();
+        drawChart2(chart2_json);
         document.getElementById("up-arrow").style.display = "block";
         document.getElementById("down-arrow").style.display = "none";
         document.getElementById("temp-range-chart-container").style.display = "block";
         document.getElementById("hourly-weather-chart-container").style.display = "block";
+        // focus on the up arrow once charts drawn
+        var formDiv = document.getElementById("up-arrow");
+        formDiv.scrollIntoView();
     }
     // to hide charts
     else {
-        var formDiv = document.getElementById("main-container");
+        // focus on the weather detail section
+        var formDiv = document.getElementById("button-div");
         formDiv.scrollIntoView();
         document.getElementById("up-arrow").style.display = "none";
         document.getElementById("down-arrow").style.display = "block";
