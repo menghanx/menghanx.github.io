@@ -275,6 +275,8 @@ function jsonToTable(data) {
             return function () {
                 var index = tr.id.toString().split(' ')[1];
                 show_detail_weather(index);
+                var detailDiv = document.getElementById("detail-container");
+                detailDiv.scrollIntoView();
             };
         };
         tr.onclick = createClickHandler(tr);

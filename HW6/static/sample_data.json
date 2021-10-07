@@ -18,7 +18,7 @@
                             "temperatureMin": 56.64,
                             "uvIndex": 1,
                             "visibility": 9.94,
-                            "weatherCode": 1000,
+                            "weatherCode": 3001,
                             "windDirection": 356.88,
                             "windSpeed": 8.52
                         }
@@ -47,7 +47,7 @@
                             "temperatureMin": 56.53,
                             "uvIndex": 1,
                             "visibility": 9.94,
-                            "weatherCode": 1000,
+                            "weatherCode": 3000,
                             "windDirection": 356.88,
                             "windSpeed": 8.52
                         }
@@ -69,7 +69,7 @@
                             "temperatureMin": 56.25,
                             "uvIndex": 2,
                             "visibility": 9.94,
-                            "weatherCode": 1000,
+                            "weatherCode": 3001,
                             "windDirection": 352.2,
                             "windSpeed": 8.17
                         }
@@ -91,7 +91,7 @@
                             "temperatureMin": 56.26,
                             "uvIndex": 2,
                             "visibility": 9.94,
-                            "weatherCode": 1100,
+                            "weatherCode": 3002,
                             "windDirection": 338.14,
                             "windSpeed": 9.33
                         }
@@ -2446,7 +2446,7 @@
                             "temperatureMin": 48.78,
                             "uvIndex": 2,
                             "visibility": 9.94,
-                            "weatherCode": 1001,
+                            "weatherCode": 3000,
                             "windDirection": 203.22,
                             "windSpeed": 9.35
                         }
@@ -2468,7 +2468,7 @@
                             "temperatureMin": 50.56,
                             "uvIndex": 3,
                             "visibility": 9.94,
-                            "weatherCode": 1001,
+                            "weatherCode": 3001,
                             "windDirection": 139.93,
                             "windSpeed": 11.01
                         }
@@ -2490,7 +2490,7 @@
                             "temperatureMin": 50.85,
                             "uvIndex": 1,
                             "visibility": 9.94,
-                            "weatherCode": 1001,
+                            "weatherCode": 3002,
                             "windDirection": 124.5,
                             "windSpeed": 9.75
                         }
