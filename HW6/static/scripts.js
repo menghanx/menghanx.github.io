@@ -388,7 +388,7 @@ function toggle_chart() {
     // to hide charts
     else {
         // focus on the weather detail section
-        var formDiv = document.getElementById("button-div");
+        var formDiv = document.getElementById("detail-container");
         formDiv.scrollIntoView();
         document.getElementById("up-arrow").style.display = "none";
         document.getElementById("down-arrow").style.display = "block";
