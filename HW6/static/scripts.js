@@ -78,6 +78,12 @@ function request_weather_data() {
 
                 response.json().
                     then(function (data) {
+                        if (data.status != "OK") {
+                            document.getElementById("no-result-section").style.display = "block";
+                            console.log(data.status + " from geocode!");
+                            return;
+                        }
+
                         // get formatted address
                         result_address = data.results[0].formatted_address;
 
