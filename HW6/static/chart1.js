@@ -19,15 +19,22 @@ function drawChart1(data) {
 
         xAxis: {
             type: 'datetime',
+            labels: {
+                formatter: function() {
+                    return Highcharts.dateFormat('%d %b ', this.value);
+               }
+            },
             accessibility: {
                 rangeDescription: 'Range: today to 15 days later'
-            }
+            },
+            tickInterval: 24*3600*1000
         },
 
         yAxis: {
             title: {
                 text: null
-            }
+            },
+            tickInterval: 5
         },
 
         tooltip: {

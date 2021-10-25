@@ -275,6 +275,8 @@ function jsonToTable(data) {
             return function () {
                 var index = tr.id.toString().split(' ')[1];
                 show_detail_weather(index);
+                var detailDiv = document.getElementById("detail-container");
+                detailDiv.scrollIntoView();
             };
         };
         tr.onclick = createClickHandler(tr);
@@ -386,7 +388,7 @@ function toggle_chart() {
     // to hide charts
     else {
         // focus on the weather detail section
-        var formDiv = document.getElementById("button-div");
+        var formDiv = document.getElementById("detail-container");
         formDiv.scrollIntoView();
         document.getElementById("up-arrow").style.display = "none";
         document.getElementById("down-arrow").style.display = "block";
