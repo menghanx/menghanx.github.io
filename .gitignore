@@ -1,5 +1,5 @@
-env/
-*.zip
+env/**
+**.zip
 ang-test/
 nodejs-docs-samples/
 nodejs-getting-started/
