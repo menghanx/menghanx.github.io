@@ -15,7 +15,8 @@ import { WeatherFormComponent } from './weather-form/weather-form.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

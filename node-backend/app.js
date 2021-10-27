@@ -14,36 +14,59 @@ const units = "imperial";
 const timesteps = "current,1h,1d";
 const timezone = "America/Los_Angeles";
 
+// DEBUG
+const fs = require('fs');
+
+let rawdata = fs.readFileSync('dummy.json');
+let dummyData = JSON.parse(rawdata);
+
+// CORS
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
+
 //  What to do for homepage
 app.get('/', (req, res) => {
     res.send('hello world!');
 });
 
+// flag debug
+var debug = false;
+
 // tomorrow.io get weather data
 app.get('/api/weather', (req, res) => {
-    // obtain latitude and longtitude from params
-    if (req.query.loc) {
-        location = req.query.loc
-        weather_params = {
-            "location": location,
-            "fields": fields,
-            "timesteps": timesteps,
-            "units": units,
-            "apikey": apikey,
-            "timezone": timezone
-        }
-        axios.get(`${getTimelineURL}`, {
-            params: weather_params
-        }).then(resp => {
-            res.status(200).json(resp.data);
-        }).catch(
-            error => {
-                res.status(500).send(error);
-            }
-        )
+    if (debug) {
+        // return dummy data
+        res.status(200).json(dummyData);
     } else {
-        res.status(404).json({ "Response": "Invailid request, parameter missing. Expected params: loc={lat},{lng}" });
+        // obtain latitude and longtitude from params
+        if (req.query.loc) {
+            location = req.query.loc
+            weather_params = {
+                "location": location,
+                "fields": fields,
+                "timesteps": timesteps,
+                "units": units,
+                "apikey": apikey,
+                "timezone": timezone
+            }
+            axios.get(`${getTimelineURL}`, {
+                params: weather_params
+            }).then(resp => {
+                res.status(200).json(resp.data);
+            }).catch(
+                error => {
+                    res.status(500).send(error);
+                }
+            )
+        } else {
+            res.status(404).json({ "Response": "Invailid request, parameter missing. Expected params: loc={lat},{lng}" });
+        }
     }
+
+
+
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
