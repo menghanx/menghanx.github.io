@@ -18,7 +18,13 @@
         <div class="form-group row">
             <label for="city" class="col-sm-3 col-form-label">City<span class="required_asterisk">*</span></label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="city" formControlName="city" name="city" required>
+                <input type="text" class="form-control" id="city" formControlName="city" name="city" required
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" md-no-cache="true" md-input-minlength="2">
+                    <mat-option *ngFor="let item of filteredOptions" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-autocomplete>
                 <div *ngIf="weatherForm.controls['city'].invalid && (weatherForm.controls['city'].dirty || weatherForm.controls['city'].touched)"
                     class="inputAlert">
                     <div *ngIf="weatherForm.controls['city'].errors?.required">
@@ -27,13 +33,12 @@
                 </div>
             </div>
         </div>
+
         <div class="form-group row">
             <label for="state" class="col-sm-3 col-form-label">State</label>
             <div class="col-sm-4">
                 <select class="form-control" id="state" required formControlName="state" name="state">
                     <option value="default" disabled selected>Select your state</option>
-                    <!-- <option value="volvo" disabled selected>Volvo</option> -->
-                    <!-- <option *ngFor="let state of states" [value]="state">{{state}}</option> -->
                     <option *ngFor="let state of states" [value]="state.id">{{state.full}}</option>
                 </select>
             </div>
@@ -61,6 +66,9 @@
             <i class="bi bi-list-nested"></i>
             <span class="btn-text">Clear</span>
         </button>
+
+
+
     </form>
 </div>
 

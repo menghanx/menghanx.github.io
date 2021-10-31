@@ -3,10 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 // import forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+// import material
+
+import { MatInputModule } from '@angular/material/input'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherFormComponent } from './weather-form/weather-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,10 @@ import { WeatherFormComponent } from './weather-form/weather-form.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

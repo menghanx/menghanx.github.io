@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { Query } from '../query';
 
@@ -67,10 +68,15 @@ export class WeatherFormComponent implements OnInit {
     { id: "WI", full: "Wisconsin" },
     { id: "WY", full: "Wyoming" }
   ]
+  // dummy data
+  options: string[] = ['New York - NY', 'New York - MN', 'New York - TX'];
+  filteredOptions: string[] = [];
+  minLength = 2;
 
   weatherForm!: FormGroup;
 
   ngOnInit(): void {
+    // Initialize form
     this.weatherForm = new FormGroup({
       street: new FormControl('', [
         Validators.required
@@ -81,8 +87,27 @@ export class WeatherFormComponent implements OnInit {
       state: new FormControl('default'),
       autoDetect: new FormControl(false)
     });
+    // autocomplete
+    this.weatherForm.get('city')?.valueChanges.subscribe(response => {
+      // update options here
+      console.log('change is ', response);
+      // filter the items
+      if (response && response.length >= this.minLength) {
+        this.filterData(response);
+      } else {
+        this.filteredOptions = [];
+      }
+    })
   }
 
+  filterData(enteredData: string) {
+    // use service to update options
+
+    // filter options and store in filteredOptions
+    this.filteredOptions = this.options.filter(item => {
+      return item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1
+    })
+  }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
