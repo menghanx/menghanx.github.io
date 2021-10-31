@@ -18,6 +18,10 @@ form {
     text-align: center;
 }
 
+.form-title h3 {
+    font-weight:600;
+    font-size:larger;
+}
 .btn-text {
     padding-left: 0.3rem;
 }

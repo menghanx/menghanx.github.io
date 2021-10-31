@@ -20,9 +20,10 @@
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="city" formControlName="city" name="city" required
                     [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" md-no-cache="true" md-input-minlength="2">
-                    <mat-option *ngFor="let item of filteredOptions" [value]="item">
-                        {{item}}
+                <mat-autocomplete #auto="matAutocomplete" md-no-cache="true" md-input-minlength="2"
+                    (optionSelected)="onSelectionChanged($event)">
+                    <mat-option *ngFor="let option of options" [value]="option">
+                        {{option.city}} - {{option.state}}
                     </mat-option>
                 </mat-autocomplete>
                 <div *ngIf="weatherForm.controls['city'].invalid && (weatherForm.controls['city'].dirty || weatherForm.controls['city'].touched)"
@@ -38,7 +39,7 @@
             <label for="state" class="col-sm-3 col-form-label">State</label>
             <div class="col-sm-4">
                 <select class="form-control" id="state" required formControlName="state" name="state">
-                    <option value="default" disabled selected>Select your state</option>
+                    <option value="Ca" disabled selected>Select your state</option>
                     <option *ngFor="let state of states" [value]="state.id">{{state.full}}</option>
                 </select>
             </div>
