@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AutocompleteService } from '../autocomplete.service'
 import { Observable } from 'rxjs';
 
 import { Query } from '../query';
@@ -12,7 +13,7 @@ import { Query } from '../query';
 export class WeatherFormComponent implements OnInit {
 
   constructor(
-
+    private auto: AutocompleteService
   ) { }
 
   states: any[] = [
@@ -102,11 +103,22 @@ export class WeatherFormComponent implements OnInit {
 
   filterData(enteredData: string) {
     // use service to update options
-
+    this.getAutos(enteredData);
     // filter options and store in filteredOptions
     this.filteredOptions = this.options.filter(item => {
       return item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1
     })
+  }
+
+  getAutos(input: string) {
+    this.auto.getData(input).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log("error");
+      }
+    )
   }
 
   onSubmit() {
