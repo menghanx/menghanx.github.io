@@ -1,9 +1,12 @@
+// Imports
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AutocompleteService } from '../autocomplete.service'
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
-
+// Custom services
+import { AutocompleteService } from '../autocomplete.service'
+import { TomorrowService } from '../tomorrow.service';
+import { IpinfoService } from '../ipinfo.service';
 import { Query } from '../query';
 
 @Component({
@@ -14,7 +17,9 @@ import { Query } from '../query';
 export class WeatherFormComponent implements OnInit {
 
   constructor(
-    private auto: AutocompleteService
+    private auto: AutocompleteService,
+    private tom: TomorrowService,
+    private ipinfo: IpinfoService,
   ) { }
 
   states: any[] = [{ id: "AL", full: "Alabama" }, { id: "AK", full: "Alaska" }, { id: "AZ", full: "Arizona" }, { id: "AR", full: "Arkansas" }, { id: "CA", full: "California" }, { id: "CO", full: "Colorado" }, { id: "CT", full: "Connecticut" }, { id: "DE", full: "Delaware" }, { id: "DC", full: "District Of Columbia" }, { id: "FL", full: "Florida" }, { id: "GA", full: "Georgia" }, { id: "HI", full: "Hawaii" }, { id: "ID", full: "Idaho" }, { id: "IL", full: "Illinois" }, { id: "IN", full: "Indiana" }, { id: "IA", full: "Iowa" }, { id: "KS", full: "Kansas" }, { id: "KY", full: "Kentucky" }, { id: "LA", full: "Louisiana" }, { id: "ME", full: "Maine" }, { id: "MD", full: "Maryland" }, { id: "MA", full: "Massachusetts" }, { id: "MI", full: "Michigan" }, { id: "MN", full: "Minnesota" }, { id: "MS", full: "Mississippi" }, { id: "MO", full: "Missouri" }, { id: "MT", full: "Montana" }, { id: "NE", full: "Nebraska" }, { id: "NV", full: "Nevada" }, { id: "NH", full: "New Hampshire" }, { id: "NJ", full: "New Jersey" }, { id: "NM", full: "New Mexico" }, { id: "NY", full: "New York" }, { id: "NC", full: "North Carolina" }, { id: "ND", full: "North Dakota" }, { id: "OH", full: "Ohio" }, { id: "OK", full: "Oklahoma" }, { id: "OR", full: "Oregon" }, { id: "PA", full: "Pennsylvania" }, { id: "RI", full: "Rhode Island" }, { id: "SC", full: "South Carolina" }, { id: "SD", full: "South Dakota" }, { id: "TN", full: "Tennessee" }, { id: "TX", full: "Texas" }, { id: "UT", full: "Utah" }, { id: "VT", full: "Vermont" }, { id: "VA", full: "Virginia" }, { id: "WA", full: "Washington" }, { id: "WV", full: "West Virginia" }, { id: "WI", full: "Wisconsin" }, { id: "WY", full: "Wyoming" }]
@@ -24,6 +29,9 @@ export class WeatherFormComponent implements OnInit {
   options: any;
   // minimum length to trigger the suggestion
   minLength = 3;
+
+  // location
+  result_address!: string;
 
   weatherForm!: FormGroup;
 
@@ -79,6 +87,35 @@ export class WeatherFormComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.weatherForm.value);
+
+    // default dummy geo loc
+    let loc = "0.758,-23.9855";
+
+    if (this.weatherForm.value['autoDetect']) {
+      console.log("auto detect");
+      this.ipinfo.getData().subscribe(
+        (data: any) => {
+          this.result_address = data["city"] + ", " + data["region"] + ", " + data["country"];
+          loc = data["loc"];
+          console.log(this.result_address);
+          // get weather data using loc
+          this.getWeather(loc);
+        }
+      )
+    } else {
+      console.log("user input");
+    }
+
+  }
+
+  // store weather data 
+  getWeather(loc: any) {
+    var res: any;
+    this.tom.getData(loc).subscribe(
+      data => {
+        // Use Data Here, call a function or something
+        console.log(data);
+      });
   }
 
   // disable input fields when checkbox is checked

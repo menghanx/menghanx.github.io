@@ -27,7 +27,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Weather.io Parameters
+// Tomorrow.io API Parameters
 let location = "";
 const getTimelineURL = "https://api.tomorrow.io/v4/timelines";
 const apikey = "oMxv2FQh3mL4u4wyRZ0lV4qKC8rTZxCh";
@@ -36,11 +36,16 @@ const units = "imperial";
 const timesteps = "current,1h,1d";
 const timezone = "America/Los_Angeles";
 
-// Autocomplete Parameters
+// Autocomplete API Parameters
 const autoURL = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 const autoKEY = "AIzaSyCLJBmNPC4h2bQlqiUl17X0m0hzYMgKzAs";
 const autoTypes = "(cities)";
 
+// DEBUG
+const fs = require('fs');
+
+let rawdata = fs.readFileSync('dummy.json');
+let dummyData = JSON.parse(rawdata);
 
 //  What to do for homepage
 app.get('/', (req, res) => {
@@ -89,30 +94,50 @@ app.get('/api/auto', (req, res) => {
     }
 });
 
+// flag debug
+var debug = false;
+
 // tomorrow.io get weather data
 app.get('/api/weather', (req, res) => {
-    // obtain latitude and longtitude from params
-    if (req.query.loc) {
-        location = req.query.loc
-        weather_params = {
-            "location": location,
-            "fields": fields,
-            "timesteps": timesteps,
-            "units": units,
-            "apikey": apikey,
-            "timezone": timezone
+    if (debug) {
+        // return dummy data
+        output = {
+            "current": dummyData.data.timelines[0].intervals,
+            "1h": dummyData.data.timelines[1].intervals,
+            "1d": dummyData.data.timelines[2].intervals
         }
-        axios.get(`${getTimelineURL}`, {
-            params: weather_params
-        }).then(resp => {
-            res.status(200).json(resp.data);
-        }).catch(
-            error => {
-                res.status(500).send(error);
-            }
-        )
+        res.status(200).json(output);
     } else {
-        res.status(404).json({ "Response": "Invailid request, parameter missing. Expected params: loc={lat},{lng}" });
+        // obtain latitude and longtitude from params
+        if (req.query.loc) {
+            location = req.query.loc
+            weather_params = {
+                "location": location,
+                "fields": fields,
+                "timesteps": timesteps,
+                "units": units,
+                "apikey": apikey,
+                "timezone": timezone
+            }
+            output = {};
+            axios.get(`${getTimelineURL}`, {
+                params: weather_params
+            }).then(resp => {
+                output = {
+                    "current": resp.data.data.timelines[0].intervals,
+                    "1h": resp.data.data.timelines[1].intervals,
+                    "1d": resp.data.data.timelines[2].intervals
+                }
+                res.status(200).json(output);
+            }).catch(
+                error => {
+                    // Return empty {} if any error
+                    res.status(200).send(output);
+                }
+            )
+        } else {
+            res.status(404).json({ "Response": "Invailid request, parameter missing. Expected params: loc={lat},{lng}" });
+        }
     }
 });
 
