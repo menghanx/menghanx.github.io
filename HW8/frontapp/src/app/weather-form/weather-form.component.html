@@ -6,10 +6,11 @@
         <div class=" form-group row">
             <label for="street" class="col-sm-3 col-form-label">Street<span class="required_asterisk">*</span></label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="street" formControlName="street" required>
+                <input type="text" class="form-control" id="street" formControlName="street">
                 <div *ngIf="weatherForm.controls['street'].invalid && (weatherForm.controls['street'].dirty || weatherForm.controls['street'].touched)"
                     class="inputAlert">
-                    <div *ngIf="weatherForm.controls['street'].errors?.required">
+                    <div
+                        *ngIf="weatherForm.controls['street'].errors?.required || (weatherForm.controls['street'].dirty && weatherForm.controls['street'].invalid)">
                         Please enter a valid street
                     </div>
                 </div>
