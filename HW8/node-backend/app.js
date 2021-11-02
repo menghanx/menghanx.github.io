@@ -95,7 +95,7 @@ app.get('/api/auto', (req, res) => {
 });
 
 // flag debug
-var debug = false;
+var debug = true;
 
 // tomorrow.io get weather data
 app.get('/api/weather', (req, res) => {
@@ -107,6 +107,7 @@ app.get('/api/weather', (req, res) => {
             "1d": dummyData.data.timelines[2].intervals
         }
         res.status(200).json(output);
+        // res.status(200).json({});
     } else {
         // obtain latitude and longtitude from params
         if (req.query.loc) {

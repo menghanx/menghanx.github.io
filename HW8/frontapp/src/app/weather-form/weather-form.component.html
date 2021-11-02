@@ -1,7 +1,7 @@
 <div class="form-container">
     <form [formGroup]="weatherForm" (ngSubmit)="onSubmit()">
         <div class="form-title">
-            <h3>Weather Search⛅</h3>
+            <h3>Weather Search🌤️</h3>
         </div>
         <div class=" form-group row">
             <label for="street" class="col-sm-3 col-form-label">Street<span class="required_asterisk">*</span></label>
@@ -45,9 +45,9 @@
                 </select>
             </div>
         </div>
-        <hr style="background-color: #e6e3e6;height:1px;border: none">
+        <hr style="background-color: #e7e3e7;height:2px;border: none">
         <div class="form-group row">
-            <div class="col-sm-3">Auto-detect location<span>*</span></div>
+            <div class="col-sm-3">Auto-detect location<span class="required_asterisk">*</span></div>
             <div class="col-sm-9">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="auto_checkbox" formControlName="autoDetect"
@@ -59,24 +59,24 @@
             </div>
         </div>
 
-        <!-- <button type="submit" [disabled]="!weatherForm.valid">Submit</button> -->
         <button type="submit" [disabled]="!weatherForm.valid" class="btn btn-primary" id="submit-btn">
             <i class="bi bi-search"></i>
             <span class="btn-text">Search</span>
         </button>
-        <button type="button" class="btn btn-default" (click)="clearForm()" id="clear-btn">
+        <!-- <a routerLink="home"> -->
+        <button [routerLink]="['/']" type="button" class="btn btn-default" (click)="clearForm()" id="clear-btn">
             <i class="bi bi-list-nested"></i>
             <span class="btn-text">Clear</span>
         </button>
-
+        <!-- </a> -->
 
 
     </form>
 </div>
 
-<div>
+<!-- <div>
     <p>street: {{weatherForm.controls['street'].value}}</p>
     <p>city: {{weatherForm.controls['city'].value}}</p>
     <p>state: {{weatherForm.controls['state'].value}}</p>
     <p>autoDetect: {{weatherForm.controls['autoDetect'].value}}</p>
-</div>
+</div> -->

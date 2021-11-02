@@ -1,0 +1,13 @@
+nav{
+    text-align: center;
+    margin: 1rem;
+    padding: 0;
+}
+
+nav a {
+    margin: 0 1rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+  }

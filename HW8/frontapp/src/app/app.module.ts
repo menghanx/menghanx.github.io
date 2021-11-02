@@ -13,11 +13,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherFormComponent } from './weather-form/weather-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResultsComponent } from './results/results.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherFormComponent
+    WeatherFormComponent,
+    ResultsComponent,
+    FavoritesComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

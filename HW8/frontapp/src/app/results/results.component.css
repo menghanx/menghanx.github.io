@@ -1,0 +1,19 @@
+h3{
+    text-align: center;
+    font-size: medium;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 0 1rem;
+}
+
+.table_row_icon {
+    width: 1.7rem;
+}
+
+table tr { 
+    border-bottom: 21px solid black;
+  }

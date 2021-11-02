@@ -1,0 +1,29 @@
+<!-- If weather data was updated and valid display result-->
+<div *ngIf="(weatherData | json) != ({} | json) && weatherData.valid">
+    <h3>Forecast at {{weatherData.address}}</h3>
+
+    <table>
+        <th *ngFor="let column of headers">
+            {{column}}
+        </th>
+        <tr *ngFor="let row of weatherData.data['1d'];let indexOfelement=index;">
+            <td>{{indexOfelement+1}}</td>
+            <td>{{getDate(row.startTime) | date:'EEEE, dd MMM yyyy'}}</td>
+            <td>
+                <img class="table_row_icon" src={{imagePath(row.values.weatherCode)}} alt="image">
+                {{status(row.values.weatherCode)}}
+            </td>
+            <td>{{row.values.temperatureMax}}</td>
+            <td>{{row.values.temperatureMin}}</td>
+            <td>{{row.values.windSpeed}}</td>
+        </tr>
+    </table>
+    {{weatherData.data["1d"] | json}}
+</div>
+
+<!-- If weather data was updated and invalid, display warning -->
+<div *ngIf="(weatherData | json) != ({} | json) && !weatherData.valid">
+    <div class="alert alert-danger" role="alert">
+        An error occured please try again later
+    </div>
+</div>
