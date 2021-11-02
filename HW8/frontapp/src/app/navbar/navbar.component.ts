@@ -14,13 +14,4 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectRes() {
-    this.res_selected = true;
-    this.fav_selected = false;
-  }
-
-  selectFav() {
-    this.res_selected = false;
-    this.fav_selected = true;
-  }
 }

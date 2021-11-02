@@ -1,8 +1,15 @@
-<nav class="navbar">
-    <a routerLink="/results" [style.background-color]="res_selected ? '#367aff' : 'white'"
-        [style.color]="res_selected ? 'white' : '#367aff'" (click)="selectRes()" href="#">Results
-    </a>
-    <a routerLink="/favorites" [style.background-color]="fav_selected ? '#367aff' : 'white'"
-        [style.color]="fav_selected ? 'white' : '#367aff'" (click)="selectFav()" href="#">Favorites
-    </a>
-</nav>
+<ul ngbNav #nav="ngbNav" class="nav-pills justify-content-center">
+    <li ngbNavItem>
+        <a ngbNavLink>Results</a>
+        <ng-template ngbNavContent>
+            <app-results></app-results>
+        </ng-template>
+    </li>
+    <li ngbNavItem>
+        <a ngbNavLink>Favorites</a>
+        <ng-template ngbNavContent>
+            <app-favorites></app-favorites>
+        </ng-template>
+    </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>

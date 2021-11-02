@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { CollectionViewer, DataSource } from "@angular/cdk/collections";
+
 // DEBUG TO REMOVE
 import * as data from "./data.json";
+
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
+
 export class ResultsComponent implements OnInit {
+
   // weather data
   weatherData!: any;
   headers = ["#", "Date", "Status", "Temp. High(°F)", "Temp. Low(°F)", "Wind Speed (mph)"];

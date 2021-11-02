@@ -1,19 +1,15 @@
 h3{
     text-align: center;
-    font-size: medium;
+    font-size: large;
+    font-weight: 600;
+    margin: 2rem;
 }
 
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 10px;
-    margin: 0 1rem;
+.nav-tabs {
+    margin-bottom: 0.7rem;
 }
 
 .table_row_icon {
     width: 1.7rem;
 }
 
-table tr { 
-    border-bottom: 21px solid black;
-  }
