@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 // import forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 // import material
-
 import { MatInputModule } from '@angular/material/input'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 
@@ -17,6 +16,8 @@ import { ResultsComponent } from './results/results.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartOneComponent } from './chart-one/chart-one.component';
+import { ChartTwoComponent } from './chart-two/chart-two.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     WeatherFormComponent,
     ResultsComponent,
     FavoritesComponent,
-    NavbarComponent
+    NavbarComponent,
+    ChartOneComponent,
+    ChartTwoComponent
   ],
   imports: [
     BrowserModule,

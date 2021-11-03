@@ -189,7 +189,6 @@ function processTableJson(data) {
 // process json data to populate the chart 1
 // format: {[date, low, high]}
 function getChart1data(data) {
-
     // reset data each time.
     chart1_json = [];
 

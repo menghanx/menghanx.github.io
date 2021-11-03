@@ -5,7 +5,7 @@ from datetime import datetime
 from urllib import parse
 from urllib.request import urlopen
 
-import jyserver.Flask as jsf
+# import jyserver.Flask as jsf
 from flask import Flask, jsonify, current_app, request
 
 WEATHER_API_KEY = "oMxv2FQh3mL4u4wyRZ0lV4qKC8rTZxCh"

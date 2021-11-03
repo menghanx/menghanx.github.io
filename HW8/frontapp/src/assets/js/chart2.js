@@ -71,12 +71,11 @@ Meteogram.prototype.getChartOptions = function () {
             marginRight: 40,
             marginTop: 50,
             plotBorderWidth: 1,
-            width: 950,
-            height: 380,
-            alignTicks: false,
-            scrollablePlotArea: {
-                minWidth: 720
-            }
+            alignTicks: false
+            // alignTicks: false,
+            // scrollablePlotArea: {
+            //     minWidth: 720
+            // }
         },
 
         defs: {
@@ -360,7 +359,6 @@ Meteogram.prototype.prepareData = function () {
         }
     }
 
-    console.log(this.json);
     // Create the chart when the data is loaded
     this.createChart();
 };

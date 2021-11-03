@@ -33,13 +33,13 @@
         <li ngbNavItem>
             <a ngbNavLink>Daily Temp. Chart</a>
             <ng-template ngbNavContent>
-                {{weatherData.data["1d"] | json}}
+                <app-chart-one></app-chart-one>
             </ng-template>
         </li>
         <li ngbNavItem>
             <a ngbNavLink>Meteogram</a>
             <ng-template ngbNavContent>
-                {{weatherData.data["1h"] | json}}
+                <app-chart-two></app-chart-two>
             </ng-template>
         </li>
     </ul>

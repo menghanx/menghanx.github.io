@@ -144,7 +144,7 @@ export class WeatherFormComponent implements OnInit {
     this.tom.getData(loc).subscribe(
       data => {
         // Use Data Here, call a function or something
-        console.log(data);
+        // console.log(data);
         let valid = !(Object.keys(data).length === 0);
         res = {
           "valid": valid,

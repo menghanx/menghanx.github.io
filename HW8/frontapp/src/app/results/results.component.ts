@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 
 // DEBUG TO REMOVE
 import * as data from "./data.json";
@@ -137,7 +136,6 @@ export class ResultsComponent implements OnInit {
     return this.mapping[input][0];
   }
   getDate(input: string) {
-    //2021-10-31T03:00:00-07:00
     return new Date(input);
   }
 
@@ -146,7 +144,6 @@ export class ResultsComponent implements OnInit {
     this.dataServ.currentData.subscribe(data => this.weatherData = data);
     // DEBUG TO REMOVE
     this.weatherData = data;
-
   }
 
 }

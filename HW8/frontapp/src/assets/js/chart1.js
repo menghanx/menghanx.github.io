@@ -1,3 +1,16 @@
+function getChart1data(data) {
+    // reset data each time.
+    var chart1_json = [];
+
+    for (var i = 0; i < data.length; i++) {
+        var date_mil = new Date(data[i].startTime).getTime();
+        var max_temp = data[i].values.temperatureMax;
+        var min_temp = data[i].values.temperatureMin;
+        chart1_json.push([date_mil, min_temp, max_temp]);
+    }
+    return chart1_json;
+}
+
 function drawChart1(data) {
 
     Highcharts.chart('chart1', {
@@ -6,11 +19,8 @@ function drawChart1(data) {
             type: 'arearange',
             zoomType: 'x',
             scrollablePlotArea: {
-                minWidth: 600,
                 scrollPositionX: 1
-            },
-            width: 950,
-            height: 380
+            }
         },
 
         title: {
