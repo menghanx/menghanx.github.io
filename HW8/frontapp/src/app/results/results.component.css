@@ -13,3 +13,21 @@ h3{
     width: 1.7rem;
 }
 
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #d0cecf;
+  }
+
+.btn {
+    padding: 0.2rem 0.5rem;
+}
+
+.detail-container {
+    text-align:center;
+    margin: 2rem 0;
+}
+
+.detail-container h2 {
+    text-align: center;
+    font-size: large;
+    font-weight: 600;
+}

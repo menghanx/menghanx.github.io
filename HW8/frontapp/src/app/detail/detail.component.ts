@@ -1,35 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Loader } from '@googlemaps/js-api-loader';
 import { DataService } from '../data.service';
-import { trigger, transition, animate, style } from '@angular/animations'
-
-// DEBUG TO REMOVE
-import * as data from "./data.json";
-
 
 @Component({
-  selector: 'app-results',
-  templateUrl: './results.component.html',
-  styleUrls: ['./results.component.css'],
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('200ms ease-in', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({ transform: 'translateX(-100%)' }))
-      ])
-    ])
-  ]
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.css']
 })
+export class DetailComponent implements OnInit {
 
-export class ResultsComponent implements OnInit {
+  constructor(
+    private dataServ: DataService
+  ) { }
 
-  // weather data
   weatherData!: any;
-  detailData!: any;
 
-  headers = ["#", "Date", "Status", "Temp. High(°F)", "Temp. Low(°F)", "Wind Speed (mph)"];
   mapping: any = {
     "1000": [
       "../../assets/images/clear_day.svg",
@@ -137,35 +122,44 @@ export class ResultsComponent implements OnInit {
     ]
   };
 
-  // toggle detail
-  visible = true;
+  dayData!: any;
 
-  constructor(
-    private dataServ: DataService
-  ) { }
+  index!: number;
 
   status(input: string) {
     return this.mapping[input][1];
   }
 
-  imagePath(input: string) {
-    return this.mapping[input][0];
-  }
   getDate(input: string) {
     return new Date(input);
   }
 
-  toggleDetail(data: any) {
-    this.visible = !this.visible;
-    this.dataServ.updateDetail(data);
-  }
-
   ngOnInit(): void {
-    // subscribe to the weather json data
     this.dataServ.currentData.subscribe(data => this.weatherData = data);
-    this.dataServ.currentDetail.subscribe(data => this.detailData = data);
-    // DEBUG TO REMOVE
-    // this.weatherData = data;
+    this.dataServ.currentDetail.subscribe(data => this.dayData = data);
+
+    if (this.weatherData.valid) {
+      let loc_lat = Number(this.weatherData.loc.split(",")[0]);
+      let loc_lng = Number(this.weatherData.loc.split(",")[1]);
+
+      let loader = new Loader({
+        apiKey: "AIzaSyCLJBmNPC4h2bQlqiUl17X0m0hzYMgKzAs"
+      })
+      const myLatLng = { lat: loc_lat, lng: loc_lng };
+      loader.load().then(() => {
+        const mapDiv = document.getElementById('map')!;
+        const map = new google.maps.Map(mapDiv, {
+          zoom: 16,
+          center: myLatLng,
+        })
+
+        new google.maps.Marker({
+          position: myLatLng,
+          map,
+          title: "Location",
+        });
+      })
+    }
   }
 
 }

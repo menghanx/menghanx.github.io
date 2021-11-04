@@ -53,7 +53,7 @@ export class WeatherFormComponent implements OnInit {
       ]),
       city: new FormControl('', [
         Validators.required,
-        this.noWhitespaceValidator
+        // this.noWhitespaceValidator
       ]),
       state: new FormControl(this.default_state),
       autoDetect: new FormControl(false)
@@ -76,14 +76,16 @@ export class WeatherFormComponent implements OnInit {
 
   // validate input is not just whitespace
   public noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
+    // const isWhitespace = ((control.value || '').trim().length === 0);
+    console.log(control === null);
+    const isWhitespace = (control.value === null || control.value.match(/^ *$/) !== null);
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
   }
 
   // Event handler when autocomplete option is selected
   onSelectionChanged(event: MatAutocompleteSelectedEvent) {
-    // console.log(event.option.value);
+    console.log(event.option.value);
     this.weatherForm.controls['city'].setValue(event.option.value.city);
     if (this.states_id.indexOf(event.option.value.state) > -1) {
       this.weatherForm.controls['state'].setValue(event.option.value.state);
@@ -149,6 +151,7 @@ export class WeatherFormComponent implements OnInit {
         res = {
           "valid": valid,
           "address": this.result_address,
+          "loc": loc,
           "data": data
         }
         this.dataServ.updateData(res);

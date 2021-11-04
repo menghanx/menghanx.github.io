@@ -18,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartOneComponent } from './chart-one/chart-one.component';
 import { ChartTwoComponent } from './chart-two/chart-two.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChartTwoComponent } from './chart-two/chart-two.component';
     FavoritesComponent,
     NavbarComponent,
     ChartOneComponent,
-    ChartTwoComponent
+    ChartTwoComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
