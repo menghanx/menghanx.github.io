@@ -1,12 +1,19 @@
-<!-- <div *ngIf="visible" [@slideInOut]></div>
-<div *ngIf="visible" [@slideInOut]>This element will slide up and down when the value of 'visible' changes from true to
-    false and vice versa.</div>
-<button type="button" class="btn btn-default" (click)="toggleDetail()">Click here</button> -->
-
 <!-- If weather data was updated and valid display result-->
 <div *ngIf="(weatherData | json) != ({} | json) && weatherData.valid">
     <div *ngIf="visible" [@slideInOut]>
         <h3>Forecast at {{weatherData.address}}</h3>
+        <div class="fav_div" style="text-align: right;">
+            <button type="button" class="btn btn-default" (click)="toggleFav()">
+                <i *ngIf="!isFav" class="bi bi-star"></i>
+                <i *ngIf="isFav" class="bi bi-star-fill text-warning"></i>
+            </button>
+            <button type="button" class="btn" (click)="toggleDetail(weatherData.data['1d'][0])">
+                details
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+
+        <p> </p>
         <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-end">
             <li ngbNavItem>
                 <a ngbNavLink>Day View</a>

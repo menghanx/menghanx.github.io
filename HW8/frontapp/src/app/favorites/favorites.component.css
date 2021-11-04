@@ -1,0 +1,15 @@
+.sorry{
+    font-weight: bold;
+}
+
+table tbody tr{
+    cursor: pointer;
+}
+
+table {
+    margin-top: 2rem;
+}
+
+.fav{
+    background-color: white;
+}

@@ -28,6 +28,8 @@ export class ResultsComponent implements OnInit {
   // weather data
   weatherData!: any;
   detailData!: any;
+  isFav: boolean = false;
+
 
   headers = ["#", "Date", "Status", "Temp. High(°F)", "Temp. Low(°F)", "Wind Speed (mph)"];
   mapping: any = {
@@ -160,10 +162,38 @@ export class ResultsComponent implements OnInit {
     this.dataServ.updateDetail(data);
   }
 
+  toggleFav() {
+    // add/remove fav
+    if (this.isFav) {
+      localStorage.removeItem(this.weatherData.loc);
+    } else {
+      var fav_data = {
+        "city": this.weatherData.city,
+        "state": this.weatherData.state,
+        "address": this.weatherData.address,
+        "loc": this.weatherData.loc
+      }
+      localStorage.setItem(this.weatherData.loc, JSON.stringify(fav_data));
+    }
+    // toggle Fav
+    this.isFav = !this.isFav;
+  }
+
   ngOnInit(): void {
+    // default isFav = false
     // subscribe to the weather json data
     this.dataServ.currentData.subscribe(data => this.weatherData = data);
     this.dataServ.currentDetail.subscribe(data => this.detailData = data);
+    this.dataServ.currentFav.subscribe(data => this.isFav = data);
+
+    if (this.weatherData.valid) {
+      var fav = localStorage.getItem(this.weatherData.loc);
+      if (fav !== null) {
+        this.isFav = true;
+      }
+    }
+    // update isFave
+    // this.dataServ.currentFav.subscribe(data => this.isFav = data);
     // DEBUG TO REMOVE
     // this.weatherData = data;
   }

@@ -10,8 +10,6 @@ import { IpinfoService } from '../ipinfo.service';
 import { GeocodeService } from '../geocode.service';
 import { DataService } from '../data.service';
 
-import { Query } from '../query';
-
 @Component({
   selector: 'app-weather-form',
   templateUrl: './weather-form.component.html',
@@ -37,6 +35,8 @@ export class WeatherFormComponent implements OnInit {
 
   // location
   result_address!: string;
+  city!: string;
+  state!: string;
 
   // weather form group
   weatherForm!: FormGroup;
@@ -108,28 +108,38 @@ export class WeatherFormComponent implements OnInit {
   // Submit the search
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.weatherForm.value);
+    // console.warn(this.weatherForm.value);
 
     // reset weather data before each search
     this.dataServ.updateData({});
-
+    this.dataServ.updateDetail({});
+    this.dataServ.toggleFav(false);
+    this.dataServ.toggleStarted(false);
+    this.dataServ.toggleFinished(false);
+    // Start
+    this.dataServ.toggleStarted(true);
+    this.dataServ.updateActive(1);
     // default dummy geo loc
     let loc = "";
 
     if (this.weatherForm.value['autoDetect']) {
-      console.log("auto detect");
+      // console.log("auto detect");
       this.ipinfo.getData().subscribe(
         (data: any) => {
           // this.result_address = data["city"] + ", " + data["region"] + ", " + data["country"];
           this.result_address = data["city"] + ", " + data["region"];
+          this.city = data["city"];
+          this.state = data["region"];
           loc = data["loc"];
           // get weather data using loc
           this.getWeather(loc);
         }
       )
     } else {
-      console.log("user input");
+      // console.log("user input");
       let query_address = this.weatherForm.value["street"].trim() + "," + this.weatherForm.value["city"].trim() + "," + this.weatherForm.value["state"].trim();
+      this.city = this.weatherForm.value["city"].trim();
+      this.state = this.states[this.states_id.indexOf(this.weatherForm.value["state"].trim().toUpperCase())].full;
       this.geocode.getData(query_address).subscribe(
         (data: any) => {
           this.result_address = data['results'][0]['formatted_address'];
@@ -143,6 +153,12 @@ export class WeatherFormComponent implements OnInit {
   // store weather data 
   getWeather(loc: any) {
     var res: any;
+    // check if loc is in favs
+    var key: string = loc;
+    if (localStorage.getItem(key) != null) {
+      this.dataServ.toggleFav(true);
+    }
+
     this.tom.getData(loc).subscribe(
       data => {
         // Use Data Here, call a function or something
@@ -151,10 +167,13 @@ export class WeatherFormComponent implements OnInit {
         res = {
           "valid": valid,
           "address": this.result_address,
+          "city": this.city,
+          "state": this.state,
           "loc": loc,
           "data": data
         }
         this.dataServ.updateData(res);
+        this.dataServ.toggleFinished(true);
       });
   }
 
@@ -182,5 +201,9 @@ export class WeatherFormComponent implements OnInit {
     this.weatherForm.controls['state'].setValue(this.default_state);
     // empty weather data
     this.dataServ.updateData({});
+    this.dataServ.updateDetail({});
+    this.dataServ.toggleFav(false);
+    this.dataServ.toggleStarted(false);
+    this.dataServ.toggleFinished(false);
   }
 }

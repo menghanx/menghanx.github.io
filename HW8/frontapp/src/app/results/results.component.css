@@ -21,6 +21,10 @@ h3{
     padding: 0.2rem 0.5rem;
 }
 
+.btn-default {
+    border-color: black;
+}
+
 .detail-container {
     text-align:center;
     margin: 2rem 0;
