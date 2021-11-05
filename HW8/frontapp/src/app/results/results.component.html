@@ -1,3 +1,6 @@
+<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+
+
 <!-- If weather data was updated and valid display result-->
 <div *ngIf="(weatherData | json) != ({} | json) && weatherData.valid">
     <div *ngIf="visible" [@slideInOut]>
@@ -73,9 +76,13 @@
 
             <h2 style="display: inline;">{{getDate(detailData.startTime) | date:'EEEE, dd MMM yyyy'}}</h2>
 
-            <button type="button" class="btn btn-primary" style="display: inline;float: right;">
+            <!-- <button type="button" class="btn btn-primary" style="display: inline;float: right;">
                 <i class="bi bi-twitter"></i>
-            </button>
+            </button> -->
+            <a type="button" class="btn btn-primary" id="tweet-btn" href={{tweet}} target="_blank" data-size="large"
+                style="display: inline;float: right;">
+                <i class="bi bi-twitter"></i>
+            </a>
         </div>
 
         <app-detail></app-detail>

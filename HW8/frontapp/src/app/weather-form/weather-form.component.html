@@ -6,11 +6,11 @@
         <div class=" form-group row">
             <label for="street" class="col-sm-3 col-form-label">Street<span class="required_asterisk">*</span></label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="street" formControlName="street">
+                <input type="text" class="form-control" id="street" formControlName="street" required>
                 <div *ngIf="weatherForm.controls['street'].invalid && (weatherForm.controls['street'].dirty || weatherForm.controls['street'].touched)"
                     class="inputAlert">
-                    <div
-                        *ngIf="weatherForm.controls['street'].errors?.required || (weatherForm.controls['street'].dirty && weatherForm.controls['street'].invalid)">
+                    <div>
+                        <!-- *ngIf="weatherForm.controls['street'].errors?.required || (weatherForm.controls['street'].dirty && weatherForm.controls['street'].invalid)"> -->
                         Please enter a valid street
                     </div>
                 </div>
@@ -19,7 +19,7 @@
         <div class="form-group row">
             <label for="city" class="col-sm-3 col-form-label">City<span class="required_asterisk">*</span></label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="city" formControlName="city" name="city" required
+                <input type="text" class="form-control" id="city" formControlName="city" required
                     [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" md-no-cache="true" md-input-minlength="2"
                     (optionSelected)="onSelectionChanged($event)">
@@ -29,7 +29,7 @@
                 </mat-autocomplete>
                 <div *ngIf="weatherForm.controls['city'].invalid && (weatherForm.controls['city'].dirty || weatherForm.controls['city'].touched)"
                     class="inputAlert">
-                    <div *ngIf="weatherForm.controls['city'].errors?.required">
+                    <div>
                         Please enter a valid city
                     </div>
                 </div>

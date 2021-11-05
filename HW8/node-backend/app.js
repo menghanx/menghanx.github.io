@@ -95,7 +95,7 @@ app.get('/api/auto', (req, res) => {
 });
 
 // flag debug
-var debug = false;
+var debug = true;
 
 // tomorrow.io get weather data
 app.get('/api/weather', (req, res) => {

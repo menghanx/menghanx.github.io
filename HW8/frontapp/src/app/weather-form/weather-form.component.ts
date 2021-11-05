@@ -53,7 +53,7 @@ export class WeatherFormComponent implements OnInit {
       ]),
       city: new FormControl('', [
         Validators.required,
-        // this.noWhitespaceValidator
+        this.noWhitespaceValidator
       ]),
       state: new FormControl(this.default_state),
       autoDetect: new FormControl(false)
@@ -64,7 +64,7 @@ export class WeatherFormComponent implements OnInit {
       // console.log('change is ', response);
 
       // Only trigger autocomplete when minimun length is met
-      if (response && response.length >= this.minLength) {
+      if (response && response.trim().length >= this.minLength) {
         this.getAutos(response);
       } else {
         this.options = [];

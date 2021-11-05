@@ -10,6 +10,9 @@ table {
     margin-top: 2rem;
 }
 
+.warn-div {
+    margin-top: 2rem; 
+}
 .fav{
     background-color: white;
 }

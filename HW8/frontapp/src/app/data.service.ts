@@ -25,6 +25,9 @@ export class DataService {
   private finished = new BehaviorSubject<boolean>(false);
   curFinished = this.finished.asObservable();
 
+  private tweet = new BehaviorSubject<string>("");
+  curTweet = this.tweet.asObservable();
+
   constructor() { }
   updateData(data: any) {
     this.dataSource.next(data);
@@ -32,6 +35,9 @@ export class DataService {
 
   updateDetail(data: any) {
     this.detail_data.next(data);
+    var text = `The temperature in ${data.address} on ${data.date} is ${data.temp}. The weather conditions are ${data.status}`;
+    var output = "https://twitter.com/intent/tweet?text=" + encodeURI(text) + "&hashtags=CSCI571WeatherSearch";
+    this.tweet.next(output);
   }
 
   toggleFav(data: boolean) {

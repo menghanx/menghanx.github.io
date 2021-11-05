@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 
+import { DatePipe } from '@angular/common'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherFormComponent } from './weather-form/weather-form.component';
@@ -42,7 +44,7 @@ import { DetailComponent } from './detail/detail.component';
     HttpClientModule,
     NgbModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

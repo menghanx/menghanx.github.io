@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { trigger, transition, animate, style } from '@angular/animations'
-
+import { DatePipe } from '@angular/common';
 // DEBUG TO REMOVE
 import * as data from "./data.json";
 
@@ -29,6 +29,7 @@ export class ResultsComponent implements OnInit {
   weatherData!: any;
   detailData!: any;
   isFav: boolean = false;
+  tweet!: string;
 
 
   headers = ["#", "Date", "Status", "Temp. High(°F)", "Temp. Low(°F)", "Wind Speed (mph)"];
@@ -143,7 +144,8 @@ export class ResultsComponent implements OnInit {
   visible = true;
 
   constructor(
-    private dataServ: DataService
+    private dataServ: DataService,
+    private datepipe: DatePipe
   ) { }
 
   status(input: string) {
@@ -159,7 +161,12 @@ export class ResultsComponent implements OnInit {
 
   toggleDetail(data: any) {
     this.visible = !this.visible;
+    data.address = this.weatherData.city + ", " + this.weatherData.state;
+    data.date = this.datepipe.transform(new Date(data.startTime), 'EEEE, dd MMM yyyy');
+    data.temp = `${data.values.temperature} °F`;
+    data.status = this.status(data.values.weatherCode);
     this.dataServ.updateDetail(data);
+
   }
 
   toggleFav() {
@@ -185,7 +192,7 @@ export class ResultsComponent implements OnInit {
     this.dataServ.currentData.subscribe(data => this.weatherData = data);
     this.dataServ.currentDetail.subscribe(data => this.detailData = data);
     this.dataServ.currentFav.subscribe(data => this.isFav = data);
-
+    this.dataServ.curTweet.subscribe(data => this.tweet = data);
     if (this.weatherData.valid) {
       var fav = localStorage.getItem(this.weatherData.loc);
       if (fav !== null) {
