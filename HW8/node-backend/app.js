@@ -7,26 +7,6 @@ app.use(express.json());
 const axios = require('axios');
 require('axios-debug-log');
 
-// CORS
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
-
 // Tomorrow.io API Parameters
 let location = "";
 const getTimelineURL = "https://api.tomorrow.io/v4/timelines";
@@ -48,9 +28,14 @@ let rawdata = fs.readFileSync('dummy.json');
 let dummyData = JSON.parse(rawdata);
 
 //  What to do for homepage
-app.get('/', (req, res) => {
-    res.send('hello world!');
-});
+// app.get('/', (req, res) => {
+//     res.send('hello world!');
+// });
+var cors = require('cors')
+
+app.use(cors())
+
+app.use('/', express.static('dist/frontapp'));
 
 // Autocomplete data
 app.get('/api/auto', (req, res) => {
@@ -95,7 +80,7 @@ app.get('/api/auto', (req, res) => {
 });
 
 // flag debug
-var debug = true;
+var debug = false;
 
 // tomorrow.io get weather data
 app.get('/api/weather', (req, res) => {

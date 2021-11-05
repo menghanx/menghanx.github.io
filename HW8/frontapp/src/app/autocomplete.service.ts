@@ -7,14 +7,14 @@ import { Observable, throwError } from 'rxjs';
 })
 export class AutocompleteService {
 
-  readonly ROOT_URL = 'http://localhost:3000/api/auto';
-  // readonly ROOT_URL = 'http://localhost:3000/api/weather?loc=40.758,-73.9855';
+  // readonly ROOT_URL = 'http://localhost:3000';
+  readonly ROOT_URL = 'https://sunny-day-cycling.wl.r.appspot.com';
 
   constructor(private http: HttpClient) { }
 
   public getData(input: string) {
     let params = new HttpParams().set('input', input);
-    return this.http.get(this.ROOT_URL, { params })
+    return this.http.get(this.ROOT_URL + '/api/auto', { params })
       .pipe(
         catchError(this.errorHandler)
       );

@@ -8,9 +8,9 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TomorrowService {
-  // readonly ROOT_URL = 'https://jsonplaceholder.typicode.com';
-  readonly ROOT_URL = 'http://localhost:3000';
-  // readonly ROOT_URL = 'https://sunny-day-cycling.wl.r.appspot.com';
+  // readonly ROOT_URL = window.location.host;
+  // readonly ROOT_URL = 'http://localhost:3000';
+  readonly ROOT_URL = 'https://sunny-day-cycling.wl.r.appspot.com';
 
   constructor(private http: HttpClient) { }
 

@@ -1,16 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { trigger, transition, animate, style } from '@angular/animations'
+import { trigger, transition, query, style, animate, group } from '@angular/animations';
 import { DatePipe } from '@angular/common';
 // DEBUG TO REMOVE
 import * as data from "./data.json";
 
+const left = [
+  query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
+  group([
+    query(':enter', [style({ transform: 'translateX(-100%)' }), animate('.3s ease-out', style({ transform: 'translateX(0%)' }))], {
+      optional: true,
+    }),
+    query(':leave', [style({ transform: 'translateX(0%)' }), animate('.3s ease-out', style({ transform: 'translateX(100%)' }))], {
+      optional: true,
+    }),
+  ]),
+];
+
+const right = [
+  query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
+  group([
+    query(':enter', [style({ transform: 'translateX(100%)' }), animate('.3s ease-out', style({ transform: 'translateX(0%)' }))], {
+      optional: true,
+    }),
+    query(':leave', [style({ transform: 'translateX(0%)' }), animate('.3s ease-out', style({ transform: 'translateX(-100%)' }))], {
+      optional: true,
+    }),
+  ]),
+];
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css'],
   animations: [
+    trigger('divSlider', [
+      transition(':increment', right),
+      transition(':decrement', left),
+    ]),
+
     trigger('slideInOut', [
       transition(':enter', [
         style({ transform: 'translateX(-100%)' }),
@@ -162,9 +190,11 @@ export class ResultsComponent implements OnInit {
   toggleDetail(data: any) {
     this.visible = !this.visible;
     data.address = this.weatherData.city + ", " + this.weatherData.state;
-    data.date = this.datepipe.transform(new Date(data.startTime), 'EEEE, dd MMM yyyy');
-    data.temp = `${data.values.temperature} °F`;
-    data.status = this.status(data.values.weatherCode);
+    if ("startTime" in data) {
+      data.date = this.datepipe.transform(new Date(data.startTime), 'EEEE, dd MMM yyyy');
+      data.temp = `${data.values.temperature} °F`;
+      data.status = this.status(data.values.weatherCode);
+    }
     this.dataServ.updateDetail(data);
 
   }

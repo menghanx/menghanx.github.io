@@ -64,7 +64,7 @@ export class WeatherFormComponent implements OnInit {
       // console.log('change is ', response);
 
       // Only trigger autocomplete when minimun length is met
-      if (response && response.trim().length >= this.minLength) {
+      if (response && response.length >= this.minLength) {
         this.getAutos(response);
       } else {
         this.options = [];
@@ -76,16 +76,23 @@ export class WeatherFormComponent implements OnInit {
 
   // validate input is not just whitespace
   public noWhitespaceValidator(control: FormControl) {
+    if (typeof (control.value) !== "string") {
+      return null;
+    }
     // const isWhitespace = ((control.value || '').trim().length === 0);
-    console.log(control === null);
     const isWhitespace = (control.value === null || control.value.match(/^ *$/) !== null);
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
   }
 
+
+  setOption(option: any) {
+
+    return option.city;
+  }
   // Event handler when autocomplete option is selected
   onSelectionChanged(event: MatAutocompleteSelectedEvent) {
-    console.log(event.option.value);
+
     this.weatherForm.controls['city'].setValue(event.option.value.city);
     if (this.states_id.indexOf(event.option.value.state) > -1) {
       this.weatherForm.controls['state'].setValue(event.option.value.state);
@@ -96,7 +103,6 @@ export class WeatherFormComponent implements OnInit {
   getAutos(input: string) {
     this.auto.getData(input).subscribe(
       data => {
-        // console.log(data);
         this.options = data;
       },
       error => {
@@ -205,5 +211,6 @@ export class WeatherFormComponent implements OnInit {
     this.dataServ.toggleFav(false);
     this.dataServ.toggleStarted(false);
     this.dataServ.toggleFinished(false);
+    this.dataServ.updateActive(1);
   }
 }
