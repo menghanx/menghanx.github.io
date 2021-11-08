@@ -189,14 +189,14 @@ export class WeatherFormComponent implements OnInit {
       this.weatherForm.controls.street.disable();
       this.weatherForm.controls.city.disable();
       this.weatherForm.controls.state.disable();
-      this.weatherForm.controls.street.reset();
-      this.weatherForm.controls.city.reset();
-      this.weatherForm.controls['state'].setValue("");
+      // this.weatherForm.controls.street.reset();
+      // this.weatherForm.controls.city.reset();
+      // this.weatherForm.controls['state'].setValue("");
     } else {
       this.weatherForm.controls.street.enable();
       this.weatherForm.controls.city.enable();
       this.weatherForm.controls.state.enable();
-      this.weatherForm.controls['state'].setValue(this.default_state);
+      // this.weatherForm.controls['state'].setValue(this.default_state);
     }
   }
 

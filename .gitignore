@@ -5,3 +5,4 @@ nodejs-docs-samples/
 nodejs-getting-started/
 **/node_modules/
 **/dist/
+**/submission*
