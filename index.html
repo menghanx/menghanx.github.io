@@ -3,13 +3,376 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+
+    <!--========== BOX ICONS ==========-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <title>Responsive resume cv</title>
 </head>
 
 <body>
-    <h1>Menghan's Github Page. </h1>
+    <!--========== HEADER ==========-->
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__log">Menghan</a>
+            <div class="nav__menu" id=nav-menu>
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">
+                            <i class='bx bx-home nav__icon'></i>Home
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#profile" class="nav__link">
+                            <i class='bx bx-user nav__icon'></i>Profile
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#education" class="nav__link">
+                            <i class='bx bx-book-alt nav__icon'></i>Education
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#skills" class="nav__link">
+                            <i class='bx bxs-receipt nav__icon'></i>Skills
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#experience" class="nav__link">
+                            <i class='bx bxs-briefcase-alt-2 nav__icon'></i>Experience
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#certificates" class="nav__link">
+                            <i class='bx bxs-award nav__icon'></i>Certificates
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#references" class="nav__link">
+                            <i class='bx bx-link-external nav__icon'></i>References
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main bd-container">
+        <!-- All elements within this div, is generated in PDF -->
+        <div class="resume" id="area-cv">
+            <div class="resume__left">
+                <!--========== HOME ==========-->
+                <section class="home" id="home">
+                    <div class="home__container section bd-grid">
+                        <div class="home__data bd-grid">
+                            <img src="/assets/img/avatar.jpg" alt="" class="home__img">
+
+                            <h1 class="home__tittle">MENGHAN <b>XU</b></h1>
+                            <h3 class="home__profession">MSCS @ USC</h3>
+                            <!-- Button to generate and download the pdf. Available for desktop. -->
+                            <div>
+                                <a download="" href="/assets/pdf/Resume_Menghan_Xu.pdf"
+                                    class="home__button-movil">Download CV</a>
+                            </div>
+                        </div>
+
+                        <div class="home__address bd-grid">
+                            <span class="home__information">
+                                <i class='bx bx-map home__icon'></i> 12722 Millennium Dr, Playa Vista, CA 90094
+                            </span>
+                            <span class="home__information">
+                                <i class='bx bx-envelope home__icon'></i> menghanx@usc.edu
+                            </span>
+                            <span class="home__information">
+                                <i class='bx bx-phone home__icon'></i> (978)944-5701
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Theme change button -->
+                    <i class='bx bx-moon change-theme' title="Theme" id="theme-button"></i>
+                    <!-- Button to download resume -->
+                    <a download="" href="/assets/pdf/Resume_Menghan_Xu.pdf" class="generate-pdf"><i
+                            class='bx bx-download' title="Generate PDF" id="resume-button"></i></a>
+
+                </section>
+
+
+                <!--========== PROFILE ==========-->
+                <section class="profile section" id="profile">
+                    <h2 class="section-title">Profile</h2>
+                    <p class="profile__description">A curious learner currently pursuing M.S. degree in Computer Science
+                        at
+                        <span id="usc_website">USC</span>. Looking to leverage my
+                        knowledge and experience into solving problems with advanced technology.
+                    </p>
+                    <p class="profile__description">Former DevOps Engineer with 5+ years of experience building,
+                        deploying and
+                        scaling infrastructure for Elasticsearch analytics engines. Scalability,
+                        automation, and performance are my focuses.
+                    </p>
+                </section>
+
+                <!--========== EDUCATION ==========-->
+                <section class="education section" id="education">
+                    <h2 class="section-title">Edycation</h2>
+                    <div class="education__container bd-grid">
+                        <div class="education__content">
+                            <div class="education__time">
+                                <span class="education__rounder"></span>
+                                <span class="education__line"></span>
+                            </div>
+                            <div class="education__data bd-grid">
+                                <h3 class="education__title">M.S. in COMPUTER SCIENCE</h3>
+                                <span class="education__studies">University of Southern California</span>
+                                <span class="education__year">2021 - 2022</span>
+                            </div>
+                        </div>
+
+                        <div class="education__content">
+                            <div class="education__time">
+                                <span class="education__rounder"></span>
+                                <!-- <span class="education__line"></span> -->
+                            </div>
+                            <div class="education__data bd-grid">
+                                <h3 class="education__title">B.S. in COMPUTER SCIENCE</h3>
+                                <span class="education__studies">University of Massachusetts Amherst</span>
+                                <span class="education__year">2011 - 2015</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!--========== SOCIAL ==========-->
+                <section class="social section">
+                    <h2 class="section-title">SOCIAL</h2>
+
+                    <div class="social__container bd-grid">
+                        <a href="https://www.linkedin.com/in/menghan-xu-01316b3a/" target="_blank" class="social__link">
+                            <i class='bx bxl-linkedin social__icon'></i>@Menghan_Xu
+                        </a>
+                        <a href="https://instagram.com/stevexmh/" target="_blank" class="social__link">
+                            <i class='bx bxl-instagram-alt social__icon'></i>@stevexmh
+                        </a>
+                        <a href="https://www.facebook.com/steven.m.xu/" target="_blank" class="social__link">
+                            <i class='bx bxl-facebook-circle social__icon'></i>@steven.m.xu</a>
+                        <a href="https://twitter.com/MenghanX" target="_blank" class="social__link">
+                            <i class='bx bxl-twitter social__icon'></i>@MenghanX</a>
+                    </div>
+                </section>
+                <!--========== SKILLS  ==========-->
+                <section class="skills section" id="skills">
+                    <h2 class="section-title">Skills</h2>
+
+                    <div class="div skills__content bd-grid">
+                        <ul class="skills__data">
+                            <li class="skills__name"><span class="skills__circle"></span>Java</li>
+                            <li class="skills__name"><span class="skills__circle"></span>Python</li>
+                            <li class="skills__name"><span class="skills__circle"></span>HTML/CSS</li>
+                            <li class="skills__name"><span class="skills__circle"></span>JavaScript</li>
+                            <li class="skills__name"><span class="skills__circle"></span>AWS</li>
+                            <li class="skills__name"><span class="skills__circle"></span>Angular 12</li>
+
+
+                        </ul>
+
+                        <ul class="skills__data">
+
+                            <li class="skills__name"><span class="skills__circle"></span>Elasticsearch</li>
+                            <li class="skills__name"><span class="skills__circle"></span>Jenkins</li>
+                            <li class="skills__name"><span class="skills__circle"></span>Unix Shell Script</li>
+                            <li class="skills__name"><span class="skills__circle"></span>NodeJS</li>
+                            <li class="skills__name"><span class="skills__circle"></span>GCP</li>
+                            <li class="skills__name"><span class="skills__circle"></span>Android Development</li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="resume__right">
+                <!--========== EXPERIENCE ==========-->
+                <section class="experience section" id="experience">
+                    <h2 class="section-title">Experience</h2>
+
+                    <div class="experience__container bd-grid">
+                        <div class="experience__content">
+                            <div class="experience__time">
+                                <span class="experience__rounder"></span>
+                                <span class="experience__line"></span>
+                            </div>
+                            <div class="experience__data bd-grid">
+                                <h3 class="experience__title">DevOps/ElasticSearch Engineer</h3>
+                                <span class="experience__company">Verizon Wireless | New York, NY | July 2015–Nov.
+                                    2020</span>
+                                <span class="experience__description">
+                                    <ul>
+                                        <li>- Built, maintained, and scaled infrastructure for production, QA, and dev
+                                            environment for more than 30 Elasticsearch search engine clusters, hosting
+                                            over 90 terabytes of log data.</li>
+                                        <li>- Automated EC2 resource provisioning and Elasticsearch cluster
+                                            initialization
+                                            using Jenkins, CloudFormation, S3, and Bash Scripts, reducing time to deploy
+                                            from 5 hours to 15 minutes.</li>
+                                        <li>- Led a team of 3 DevOps engineers in transition from on-prem servers to AWS
+                                            ultimately reduced infrastructure cost by 25% and improved performance by
+                                            9%.</li>
+                                        <li>- Automated performance measurement reporting and disaster recovery process
+                                            leading to real-time alerting and a reduction of system downtime and poor
+                                            performance by 30%.</li>
+                                        <li>- Collaborated with more than 40 teams to set up data ingestion pipelines,
+                                            coordinated storage resources, and conducted training sessions, helped users
+                                            to gain full visibility of application performance, and improved overall
+                                            productivity.</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="experience__content">
+                            <div class="experience__time">
+                                <span class="experience__rounder"></span>
+                                <span class="experience__line"></span>
+                            </div>
+                            <div class="experience__data bd-grid">
+                                <h3 class="experience__title">Software Engineering Intern</h3>
+                                <span class="experience__company">Verizon Wireless | Piscataway, NJ | June 2014–Aug.
+                                    2014</span>
+                                <span class="experience__description">
+                                    <ul>
+                                        <li>- Developed a report generator in Java, retrieving data from Elasticsearch
+                                            engine and populating charts and tables in HTML format and embedded in email
+                                            content, adopted and deployed in production environment.</li>
+                                        <li>- Simplified documentation and comments on functionalities, aiming to
+                                            provide
+                                            clean instruction and code for reusability and readability.</li>
+                                        <li>- Utilized Atlassian Jira for task management and Github for version
+                                            controls
+                                            to set clear objectives and milestones to ensure steady progress and meet
+                                            deadline requirements.</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- <div class="experience__content">
+                            <div class="experience__time">
+                                <span class="experience__rounder"></span>
+                                <span class="experience__line"></span>
+                            </div>
+                            <div class="experience__data bd-grid">
+                                <h3 class="experience__title">Mobile Application Design Intern</h3>
+                                <span class="experience__company">OnDemandWorld | Beijing, China | May
+                                    2013-Aug. 2013</span>
+                                <span class="experience__description">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                    commodo
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                    dolore
+                                    eu fugiat nulla pariatur.</span>
+                            </div>
+                        </div> -->
+                    </div>
+
+
+
+                </section>
+
+                <!--========== CERTIFICATES ==========-->
+                <section class="certificate section" id="certificates">
+                    <h2 class="section-title">Certificates</h2>
+
+                    <div class="certificate__container bd-grid">
+                        <div class="certificate__content">
+                            <h3 class="certificate__title">AWS Certified Solutions Architect Associate</h3>
+                            <p class="certificate__description">Oct. 2018-Oct.2021</p>
+                        </div>
+
+                        <div class="certificate__content">
+                            <h3 class="certificate__title">edX Verified Certificate for software development</h3>
+                            <p class="certificate__description">Does not expire</p>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!--========== LANGUAGES ==========-->
+                <section class="languages section">
+                    <h2 class="section-title">Languages</h2>
+
+                    <div class="languages__container">
+                        <ul class="languages__content bd-grid">
+                            <li class="languages__name">
+                                <span class="languages__circle"></span> English
+                            </li>
+
+                            <li class="languages__name">
+                                <span class="languages__circle"></span> Chinese(Mandarine)
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!--========== INTERESTS ==========-->
+                <section class="interests section">
+                    <h2 class="section-title">Interests</h2>
+                    <div class="interests__container bd-grid">
+                        <div class="interests__content">
+                            <i class='bx bx-basketball interests__icon'></i>
+                            <span class="interests__name">Basketball</span>
+                        </div>
+                        <div class="interests__content">
+                            <i class='bx bx-cycling interests__icon'></i>
+                            <span class="interests__name">Cycling</span>
+                        </div>
+                        <div class="interests__content">
+                            <i class='bx bxs-plane-alt interests__icon'></i>
+                            <span class="interests__name">Travel</span>
+                        </div>
+                        <div class="interests__content">
+                            <i class='bx bx-desktop interests__icon'></i>
+                            <span class="interests__name">Technology</span>
+                        </div>
+                        <div class="interests__content">
+                            <i class='bx bxs-game interests__icon'></i>
+                            <span class="interests__name">Viedo games</span>
+                        </div>
+                        <div class="interests__content">
+                            <i class='bx bxs-tree interests__icon'></i>
+                            <span class="interests__name">Hiking</span>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!--========== REFERENCES ==========-->
+                <section class="references section" id="references">
+
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!--========== SCROLL TOP ==========-->
+    <a href="" class="scrolltop" id="scroll-top">
+        <i class='bx bx-up-arrow-alt scrolltop__icon'></i>
+    </a>
+
+    <!--========== HTML2PDF ==========-->
+    <script src="assets/js/html2pdf.bundle.min.js"></script>
+
+    <!--========== MAIN JS ==========-->
+    <script src="assets/js/main.js"></script>
 </body>
+
+
 
 </html>

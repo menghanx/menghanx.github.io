@@ -7,9 +7,12 @@ app.use(express.json());
 const axios = require('axios');
 require('axios-debug-log');
 
+
 // Tomorrow.io API Parameters
 let location = "";
 const getTimelineURL = "https://api.tomorrow.io/v4/timelines";
+// new key
+// const apikey = "zuDpLrXISCRxZR82e0CO2I5oUT0PWHZJ";
 const apikey = "oMxv2FQh3mL4u4wyRZ0lV4qKC8rTZxCh";
 const fields = "temperature,temperatureApparent,temperatureMin,temperatureMax,windSpeed,windDirection,humidity,pressureSeaLevel,uvIndex,weatherCode,precipitationProbability,precipitationType,sunriseTime,sunsetTime,visibility,moonPhase,cloudCover";
 const units = "imperial";
